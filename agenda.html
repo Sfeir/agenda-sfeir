@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Agenda</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css">
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="img-header">
+    <img src="https://weare.sfeir.com/wp-content/uploads/2017/05/logo.png">
+</div>
+
+    <form id="contact-form" role="form" data-toggle="validator" action="#">
+
+        <div id="contact-info">
+
+            <div id="nom-event" class="form-group has-feedback">
+                <label for="nom-event-i" class="contact-titre">Nom de l'évènement</label>
+                <input id="nom-event-i" class="contact-input" type="text" name="Nom" placeholder="Nom de l'évènement"/>
+
+            </div>
+
+            <div id="type-event">
+                <label for="cte" class="contact-titre">Type d'évènement :</label>
+                <select name="Type" id="cte">
+                    <option value="Soirée technique">Soirée technique</option>
+                    <option value="Meetup">Meetup</option>
+                    <option value="Hands On">Hands On</option>
+                    <option value="Conférence">Conférence</option>
+                    <option value="SFEIR School">SFEIR School</option>
+                    <option value="SFEIR h0bb1es">SFEIR h0bb1es</option>
+                    <option value="Brown Bag Lunch">Brown Bag Lunch</option>
+                    <option value="Hackathon">Hackathon</option>
+                    <option value="Événement business">Événement business</option>
+                    <option value="Bouffe front">Bouffe front</option>
+                    <option value="Soirée d’agence">Soirée d’agence</option>
+                    <option value="Ch’FEIR Share">Ch’FEIR Share</option>
+                    <option value="Soirée Playoffs">Soirée Playoffs</option>
+                    <option value="SFEIR Office">SFEIR Office</option>
+                    <option value="Quarter Backs">Quarter Backs</option>
+                    <option value="Forum">Forum</option>
+                    <option value="SFEIR Innovation Challenge">SFEIR Innovation Challenge</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+
+            <div id="type-event2" class="hidden">
+                <input type="text" name="type-event-ext" id="type-event-ext" placeholder="Type d'évènement" disabled>
+            </div>
+
+            <div id="ville" class="hidden">
+                <label for="cv" class="contact-titre">Choisir une ville :</label>
+                <select name="Ville" id="cv">
+                    <option value="na">Choisir une ville</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Lille">Lille</option>
+                    <option value="Luxembourg">Luxembourg</option>
+                    <option value="Strasbourg">Strasbourg</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+
+            <div id="ville2" class="hidden">
+                <input type="text" name="Ville-ext" id="ville-ext" placeholder="Ville">
+            </div>
+
+            <div id="salle" class="hidden">
+                <label class="contact-titre">Choisir une salle :</label>
+                <select name="Salle" id="cs">
+                    <option value="na">choisir une salle</option>
+                </select>
+            </div>
+
+            <div id="jours" class="hidden">
+                <label>Est-ce sur plusieurs jours ?</label>
+                <input type="radio" id="jour1" name="jour" value="oui">
+                <label for="jour1">Oui</label>
+                <input type="radio" id="jour2" name="jour" value="non">
+                <label for="jour2">Non</label>
+            </div>
+
+            <div id="plage" class="hidden">
+                <label class="contact-titre">Choisir une plage horaire :</label>
+                <select name="Plage horaire" id="ph">
+                    <option value="Matin">Matin</option>
+                    <option value="Après-midi">Après-midi</option>
+                    <option value="Soir">Soir</option>
+                    <option value="Toute la journée">Toute la journée</option>
+                </select>
+            </div>
+
+            <div id="date-debut" class="hidden">
+                <label for="dd" class="contact-titre">Date de début :</label>
+                <input id="dd" type="date" name="Date DEBUT">
+            </div>
+
+            <!-- <div id="horaire-début">
+                <label for="hd" class="contact-titre">Horaire de début :</label>
+                <input id="hd" type="time" name="Horaire DEBUT">
+            </div> -->
+
+            <div id="invalide1" class="hidden">Date indisponible !</div>
+
+            <div id="date-fin" class="hidden">
+                <label for="df" class="contact-titre">Date de fin :</label>
+                <input id="df" type="date" name="Date FIN">
+            </div>
+
+            <div id="invalide2" class="hidden">Date indisponible !</div>
+
+            <!-- <div id="heures">
+                <label for="cbh">Je connais l'heure de fin ?</label>
+                <input type="checkbox" id="cbh" name="horaire" value="horaire">
+            </div>
+
+            <div id="horaire-fin" style="display: none;">
+                <label for="hf" class="contact-titre">Horaire de fin :</label>
+                <input id="hf" type="time" name="Horaire FIN" disabled>
+            </div> -->
+
+            <div id="email" class="form-group has-feedback hidden">
+                <label for="Email-i" class="contact-titre">Votre adresse email</label>
+                <input id="Email-i" class="contact-input" type="Email" name="Email" placeholder="Email"/>
+            </div>
+
+            <div id="organisateur" class="form-group has-feedback hidden">
+                <label for="organisateur-i" class="contact-titre">Le(s) organisateur(s) de l'évènement</label>
+                <input id="organisateur-i" class="contact-input" type="text" name="Organisateurs" placeholder="Organisateurs"/>
+            </div>
+
+            <div id="speaker" class="form-group has-feedback hidden">
+                <label for="speaker-i" class="contact-titre">Le(s) speaker(s) SFEIR</label>
+                <input id="speaker-i" class="contact-input" type="text" name="Speaker" placeholder="Speaker"/>
+            </div>
+
+            <div id="description" class="form-group has-feedback hidden">
+                <label for="description-i" class="contact-titre">Description rapide de l'évènement</label>
+                <input id="description-i" class="contact-input" type="text" name="Description" placeholder="Description"/>
+            </div>
+
+            <div id="lien" class="form-group has-feedback hidden">
+                <label for="lien-i" class="contact-titre">Adresse du site de l'évènement</label>
+                <input id="lien-i" class="contact-input" type="text" name="Lien" placeholder="Lien"/>
+            </div>
+
+            <div id="contact-btn"  class="form-group">
+                <button type="submit" id="postForm" class="orange" disabled>Soumettre</button>
+            </div>
+        </div>
+    </form>
+
+<script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+
+</body>
+
+</html>
+

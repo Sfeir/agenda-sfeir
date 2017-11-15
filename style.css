@@ -1,0 +1,212 @@
+/* --- General --- */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: #404040;
+  position: relative;
+  background: #FFF;
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+a {
+  color: #008AFF;
+}
+a:hover,
+a:focus {
+  color: #0085a1;
+}
+
+#img-header{
+  text-align: center;
+}
+
+.img-header img{
+  width: 150px;
+}
+
+div{
+  margin-bottom: 15px;
+}
+
+label
+
+.orange{
+  color: #fff;
+  border-width: 0;
+  outline: none;
+  border-radius: 5px;
+  height: 35px;
+  padding-left: 10%;
+  padding-right: 10%;
+  border-bottom-width: 3px;
+  border-color: #e75112;
+  background-color: #e75112;
+}
+.orange:hover{
+  background-color: #105394;
+  border-color: #105394;
+}
+
+.orange:focus{
+  background-color: #105394;
+  border-bottom-width: 0px;
+  margin-bottom: 3px;
+}
+
+#contact-interet{
+  width:100%;
+}
+
+#contact-form{
+  width: 50%;
+  margin-left: 25%;
+}
+.contact-cb{
+  margin-left: 20px;
+}
+
+#contact-info{
+  /*margin-left: 50%;*/
+}
+
+#contact-form{
+  background-color: #e6e6e6;
+}
+
+#contact-info{
+  padding: 5%;
+}
+#contact-interet{
+  padding: 5%  0  5%  5%;
+}
+#c-obligatoire{
+  font-style: italic;
+  font-size: 16px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.contact-cb {
+  text-align:left;
+  vertical-align:middle;
+  line-height:1em;
+}
+.contact-cb label:hover{
+  cursor: pointer;
+}
+.contact-cb label:before {
+  vertical-align:middle;
+  content:'';
+  display:inline-block;
+  visibility:visible;
+  width:1em;
+  height:1em;
+  margin:0em 0.5em 0.3em -1.3em;
+  text-align:center;
+  border:1px solid #e75112;
+}
+.contact-cb input:checked+label:before {
+  content:'✔';
+  color: #105394;
+}
+.contact-cb input {
+  margin:0 !important;
+  opacity:0;
+  filter:alpha(opacity=0);
+  height:1em;
+  width:1em;
+}
+
+#contact-form select{
+  outline: none;
+  border:2px solid #e75112;
+  width: 70%;
+  height:40px;
+}
+
+.contact-input {
+  height:40px;
+  width:100%;
+  border: 2px solid #fff;
+  border-bottom:2px solid #e75112;
+}
+.contact-input:focus{
+  outline: none;
+  border:1px solid #105394;
+}
+
+.form-control-feedback{
+      margin-top: 4px;
+}
+.help-block{
+  margin-top: -15px;
+  min-height: 25px;
+}
+.has-success input{
+  border:2px solid #3c763d;
+}
+.has-error input{
+  border:2px solid #a94442;
+}
+#cb-error{
+  color: #a94442;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.contact-titre, #contact-titre-2{
+  color:#105394;
+}
+
+#contact-titre-2{
+  margin-top: 15%;
+}
+
+input:disabled{
+  background-color: #DCDAD1;
+}
+
+#congrats{
+  text-align: center;
+
+}
+
+#congrats h1{
+  color: #e75112;
+}
+#congrats h2{
+  color: #105394;
+}
+
+.hidden{
+  display: none;
+}
+
+#contact-btn{
+  margin-top: 5%;
+  text-align: right;
+}
+
+button:disabled, button:hover:disabled{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+#invalide1, #invalide2{
+  color: #a94442;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  min-height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
