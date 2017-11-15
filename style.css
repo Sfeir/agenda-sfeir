@@ -37,8 +37,6 @@ div{
   margin-bottom: 15px;
 }
 
-label
-
 .orange{
   color: #fff;
   border-width: 0;
@@ -197,9 +195,16 @@ input:disabled{
 }
 
 button:disabled, button:hover:disabled{
-  border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
+  border-width: 0;
+  outline: none;
+  border-radius: 5px;
+  height: 35px;
+  padding-left: 10%;
+  padding-right: 10%;
+  border-bottom-width: 3px;
+  border-color: #cccccc;
 }
 
 #invalide1, #invalide2{
