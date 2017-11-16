@@ -370,8 +370,8 @@ function initClient() {
 
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        authorizeButton.onclick = handleAuthClick;
-        signoutButton.onclick = handleSignoutClick;
+        //authorizeButton.onclick = handleAuthClick;
+        //signoutButton.onclick = handleSignoutClick;
     });
 }
 
@@ -381,12 +381,12 @@ function initClient() {
  */
 function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
-        authorizeButton.style.display = 'none';
-        signoutButton.style.display = 'block';
-        listMajors();
+        //authorizeButton.style.display = 'none';
+        //signoutButton.style.display = 'block';
+        //listMajors();
     } else {
-        authorizeButton.style.display = 'block';
-        signoutButton.style.display = 'none';
+        //authorizeButton.style.display = 'block';
+        //signoutButton.style.display = 'none';
     }
 }
 
