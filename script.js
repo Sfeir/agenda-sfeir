@@ -1,5 +1,5 @@
 $().ready(function() {
-    handleAuthClick();
+
     $('#contact-form').bootstrapValidator({
         //submitButtons: '#postForm',
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -393,7 +393,7 @@ function updateSigninStatus(isSignedIn) {
 /**
  *  Sign in the user upon button click.
  */
-function handleAuthClick() {
+function handleAuthClick(event) {
     gapi.auth2.getAuthInstance().signIn();
 }
 
