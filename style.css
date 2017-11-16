@@ -215,3 +215,15 @@ button:disabled, button:hover:disabled{
   line-height: 40px;
   text-align: center;
 }
+
+#login{
+  color: green;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  min-height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-top: -15px;
+  margin-bottom: 30px;
+  padding: 10px;
+}
