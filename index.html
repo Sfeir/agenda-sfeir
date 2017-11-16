@@ -1,132 +1,173 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Google Sheets API Quickstart</title>
-    <meta charset='utf-8' />
-</head>
-<body>
-<p>Google Sheets API Quickstart</p>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
 
-<!--Add buttons to initiate auth sequence and sign out-->
+    <title>Agenda</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css">
+    <link href="https://cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="img-header">
+    <img src="https://weare.sfeir.com/wp-content/uploads/2017/05/logo.png">
+</div>
 <button id="authorize-button" style="display: none;">Authorize</button>
 <button id="signout-button" style="display: none;">Sign Out</button>
-
 <pre id="content"></pre>
 
-<script type="text/javascript">
-    // Client ID and API key from the Developer Console
-    var CLIENT_ID = '610580318952-gbttqu242bfi93erapqcvcqtb8ot0l3n.apps.googleusercontent.com'; //wLrRqXofyXPVznT_nsG_7BhX
-    var API_KEY = 'AIzaSyAZJHOwagBVkC6GXSFqn2G9jN6D2sIGNRE';
+    <form id="contact-form" role="form" data-toggle="validator" action="#">
 
-    // Array of API discovery doc URLs for APIs used by the quickstart
-    var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+        <div id="contact-info">
 
-    // Authorization scopes required by the API; multiple scopes can be
-    // included, separated by spaces.
-    var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+            <div id="nom-event" class="form-group has-feedback">
+                <label for="nom-event-i" class="contact-titre">Nom de l'évènement</label>
+                <input id="nom-event-i" class="contact-input" type="text" name="Nom" placeholder="Nom de l'évènement"/>
 
-    var authorizeButton = document.getElementById('authorize-button');
-    var signoutButton = document.getElementById('signout-button');
+            </div>
 
-    /**
-     *  On load, called to load the auth2 library and API client library.
-     */
-    function handleClientLoad() {
-        gapi.load('client:auth2', initClient);
-    }
+            <div id="type-event">
+                <label for="cte" class="contact-titre">Type d'évènement :</label>
+                <select name="Type" id="cte">
+                    <option value="Soirée technique">Soirée technique</option>
+                    <option value="Meetup">Meetup</option>
+                    <option value="Hands On">Hands On</option>
+                    <option value="Conférence">Conférence</option>
+                    <option value="SFEIR School">SFEIR School</option>
+                    <option value="SFEIR h0bb1es">SFEIR h0bb1es</option>
+                    <option value="Brown Bag Lunch">Brown Bag Lunch</option>
+                    <option value="Hackathon">Hackathon</option>
+                    <option value="Événement business">Événement business</option>
+                    <option value="Bouffe front">Bouffe front</option>
+                    <option value="Soirée d’agence">Soirée d’agence</option>
+                    <option value="Ch’FEIR Share">Ch’FEIR Share</option>
+                    <option value="Soirée Playoffs">Soirée Playoffs</option>
+                    <option value="SFEIR Office">SFEIR Office</option>
+                    <option value="Quarter Backs">Quarter Backs</option>
+                    <option value="Forum">Forum</option>
+                    <option value="SFEIR Innovation Challenge">SFEIR Innovation Challenge</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
 
-    /**
-     *  Initializes the API client library and sets up sign-in state
-     *  listeners.
-     */
-    function initClient() {
-        gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: DISCOVERY_DOCS,
-            scope: SCOPES
-        }).then(function () {
-            // Listen for sign-in state changes.
-            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+            <div id="type-event2" class="hidden">
+                <input type="text" name="type-event-ext" id="type-event-ext" placeholder="Type d'évènement" disabled>
+            </div>
 
-            // Handle the initial sign-in state.
-            updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-            authorizeButton.onclick = handleAuthClick;
-            signoutButton.onclick = handleSignoutClick;
-        });
-    }
+            <div id="ville" class="hidden">
+                <label for="cv" class="contact-titre">Choisir une ville :</label>
+                <select name="Ville" id="cv">
+                    <option value="na">Choisir une ville</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Lille">Lille</option>
+                    <option value="Luxembourg">Luxembourg</option>
+                    <option value="Strasbourg">Strasbourg</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
 
-    /**
-     *  Called when the signed in status changes, to update the UI
-     *  appropriately. After a sign-in, the API is called.
-     */
-    function updateSigninStatus(isSignedIn) {
-        if (isSignedIn) {
-            authorizeButton.style.display = 'none';
-            signoutButton.style.display = 'block';
-            listMajors();
-        } else {
-            authorizeButton.style.display = 'block';
-            signoutButton.style.display = 'none';
-        }
-    }
+            <div id="ville2" class="hidden">
+                <input type="text" name="Ville-ext" id="ville-ext" placeholder="Ville">
+            </div>
 
-    /**
-     *  Sign in the user upon button click.
-     */
-    function handleAuthClick(event) {
-        gapi.auth2.getAuthInstance().signIn();
-    }
+            <div id="salle" class="hidden">
+                <label class="contact-titre">Choisir une salle :</label>
+                <select name="Salle" id="cs">
+                    <option value="na">choisir une salle</option>
+                </select>
+            </div>
 
-    /**
-     *  Sign out the user upon button click.
-     */
-    function handleSignoutClick(event) {
-        gapi.auth2.getAuthInstance().signOut();
-    }
+            <div id="jours" class="hidden">
+                <label class="contact-titre">Est-ce sur plusieurs jours ?</label>
+                <input type="radio" id="jour1" name="jour" value="oui">
+                <label for="jour1">Oui</label>
+                <input type="radio" id="jour2" name="jour" value="non">
+                <label for="jour2">Non</label>
+            </div>
 
-    /**
-     * Append a pre element to the body containing the given message
-     * as its text node. Used to display the results of the API call.
-     *
-     * @param {string} message Text to be placed in pre element.
-     */
-    function appendPre(message) {
-        var pre = document.getElementById('content');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
-    }
+            <div id="plage" class="hidden">
+                <label class="contact-titre">Choisir une plage horaire :</label>
+                <select name="Plage horaire" id="ph">
+                    <option value="Matin">Matin</option>
+                    <option value="Après-midi">Après-midi</option>
+                    <option value="Soir">Soir</option>
+                    <option value="Toute la journée">Toute la journée</option>
+                </select>
+            </div>
 
-    /**
-     * Print the names and majors of students in a sample spreadsheet:
-     * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-     */
-    function listMajors() {
-        gapi.client.sheets.spreadsheets.values.get({
-            spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-            range: 'Class Data!A2:E',
-        }).then(function(response) {
-            var range = response.result;
-            if (range.values.length > 0) {
-                appendPre('Name, Major:');
-                for (i = 0; i < range.values.length; i++) {
-                    var row = range.values[i];
-                    // Print columns A and E, which correspond to indices 0 and 4.
-                    appendPre(row[0] + ', ' + row[4]);
-                }
-            } else {
-                appendPre('No data found.');
-            }
-        }, function(response) {
-            appendPre('Error: ' + response.result.error.message);
-        });
-    }
+            <div id="date-debut" class="hidden">
+                <label for="dd" class="contact-titre">Date de début :</label>
+                <input id="dd" type="date" name="Date DEBUT">
+            </div>
 
-</script>
+            <!-- <div id="horaire-début">
+                <label for="hd" class="contact-titre">Horaire de début :</label>
+                <input id="hd" type="time" name="Horaire DEBUT">
+            </div> -->
+
+            <div id="invalide1" class="hidden">Date indisponible !</div>
+
+            <div id="date-fin" class="hidden">
+                <label for="df" class="contact-titre">Date de fin :</label>
+                <input id="df" type="date" name="Date FIN">
+            </div>
+
+            <div id="invalide2" class="hidden">Date indisponible !</div>
+
+            <!-- <div id="heures">
+                <label for="cbh">Je connais l'heure de fin ?</label>
+                <input type="checkbox" id="cbh" name="horaire" value="horaire">
+            </div>
+
+            <div id="horaire-fin" style="display: none;">
+                <label for="hf" class="contact-titre">Horaire de fin :</label>
+                <input id="hf" type="time" name="Horaire FIN" disabled>
+            </div> -->
+
+            <div id="email" class="form-group has-feedback hidden">
+                <label for="Email-i" class="contact-titre">Votre adresse email</label>
+                <input id="Email-i" class="contact-input" type="Email" name="Email" placeholder="Email"/>
+            </div>
+
+            <div id="organisateur" class="form-group has-feedback hidden">
+                <label for="organisateur-i" class="contact-titre">Le(s) organisateur(s) de l'évènement</label>
+                <input id="organisateur-i" class="contact-input" type="text" name="Organisateurs" placeholder="Organisateurs"/>
+            </div>
+
+            <div id="speaker" class="form-group has-feedback hidden">
+                <label for="speaker-i" class="contact-titre">Le(s) speaker(s) SFEIR</label>
+                <input id="speaker-i" class="contact-input" type="text" name="Speaker" placeholder="Speaker"/>
+            </div>
+
+            <div id="description" class="form-group has-feedback hidden">
+                <label for="description-i" class="contact-titre">Description rapide de l'évènement</label>
+                <input id="description-i" class="contact-input" type="text" name="Description" placeholder="Description"/>
+            </div>
+
+            <div id="lien" class="form-group has-feedback hidden">
+                <label for="lien-i" class="contact-titre">Adresse du site de l'évènement</label>
+                <input id="lien-i" class="contact-input" type="text" name="Lien" placeholder="Lien"/>
+            </div>
+
+            <div id="contact-btn"  class="form-group">
+                <button type="submit" id="postForm" class="orange" disabled>Soumettre</button>
+            </div>
+        </div>
+    </form>
 
 <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};handleClientLoad()"
-        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        onreadystatechange="if (this.readyState === 'complete') this.onload()"/>
 </script>
+
 </body>
+
 </html>
+
