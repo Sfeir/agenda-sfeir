@@ -334,7 +334,7 @@ function hideInfo(){
 }
 
 // Client ID and API key from the Developer Console
-var CLIENT_ID = '610580318952-gbttqu242bfi93erapqcvcqtb8ot0l3n.apps.googleusercontent.com'; //wLrRqXofyXPVznT_nsG_7BhX
+var CLIENT_ID = '610580318952-gbttqu242bfi93erapqcvcqtb8ot0l3n.apps.googleusercontent.com';
 var API_KEY = 'AIzaSyAZJHOwagBVkC6GXSFqn2G9jN6D2sIGNRE';
 
 // Array of API discovery doc URLs for APIs used by the quickstart
@@ -422,16 +422,16 @@ function appendPre(message) {
  */
 function listMajors() {
     gapi.client.sheets.spreadsheets.values.get({
-        spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-        range: 'Class Data!A2:E',
+        spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
+        range: 'Sheet1',
     }).then(function(response) {
         var range = response.result;
         if (range.values.length > 0) {
-            appendPre('Name, Major:');
-            for (i = 0; i < range.values.length; i++) {
+            appendPre('DEBUT: Date, Heure || FIN: Date, Heure');
+            for (i = 1; i < range.values.length; i++) {
                 var row = range.values[i];
                 // Print columns A and E, which correspond to indices 0 and 4.
-                appendPre(row[0] + ', ' + row[4]);
+                appendPre(row[6]+ ', ' + row[4]+ '|| '+ row[5]);
             }
         } else {
             appendPre('No data found.');
