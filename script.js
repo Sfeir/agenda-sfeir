@@ -1,7 +1,5 @@
 $().ready(function() {
 
-    handleAuthClick();
-
     $('#contact-form').bootstrapValidator({
         //submitButtons: '#postForm',
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -372,7 +370,7 @@ function initClient() {
 
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        //authorizeButton.onclick = handleAuthClick;
+        handleAuthClick;
         //signoutButton.onclick = handleSignoutClick;
     });
 }
@@ -404,41 +402,4 @@ function handleAuthClick(event) {
  */
 function handleSignoutClick(event) {
     gapi.auth2.getAuthInstance().signOut();
-}
-
-/**
- * Append a pre element to the body containing the given message
- * as its text node. Used to display the results of the API call.
- *
- * @param {string} message Text to be placed in pre element.
- */
-function appendPre(message) {
-    var pre = document.getElementById('content');
-    var textContent = document.createTextNode(message + '\n');
-    pre.appendChild(textContent);
-}
-
-/**
- * Print the names and majors of students in a sample spreadsheet:
- * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
- */
-function listMajors() {
-    gapi.client.sheets.spreadsheets.values.get({
-        spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
-        range: 'Sheet1',
-    }).then(function(response) {
-        var range = response.result;
-        if (range.values.length > 0) {
-            appendPre('DEBUT: Date, Heure || FIN: Date, Heure');
-            for (i = 1; i < range.values.length; i++) {
-                var row = range.values[i];
-                // Print columns A and E, which correspond to indices 0 and 4.
-                appendPre(row[6]+ ', ' + row[4]+ '|| '+ row[5]);
-            }
-        } else {
-            appendPre('No data found.');
-        }
-    }, function(response) {
-        appendPre('Error: ' + response.result.error.message);
-    });
 }
