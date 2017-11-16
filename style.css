@@ -33,6 +33,12 @@ a:focus {
   width: 150px;
 }
 
+#img-header h1{
+  font-size: 24px;
+  margin-top: -10px;
+  color: #e75112;
+}
+
 div{
   margin-bottom: 15px;
 }

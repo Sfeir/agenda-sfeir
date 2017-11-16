@@ -228,7 +228,7 @@ $().ready(function() {
             $("#cv").append('<option value="' + $('#ville-ext').val() + '"></option>');
             $("#cv").val($('#ville-ext').val());
         }
-       
+
     });
 
     $('#jours').change(function(){
