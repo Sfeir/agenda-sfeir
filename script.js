@@ -110,12 +110,29 @@ $().ready(function() {
                 });
         });
 
+    $('#cte').addClass("selnotok");
+    $('#cv').addClass("selnotok");
+    $('#cs').addClass("selnotok");
+    $('#ph').addClass("selok");
+
+
     $('#cv').change(function () {
+
+        if($(this).val() !== "na"){
+            $(this).addClass("selok");
+            $(this).removeClass("selnotok");
+        }else{
+            $(this).addClass("selnotok");
+            $(this).removeClass("selok");
+        }
+
         hideInfo();
         $('#jours').addClass('hidden');
         $('#plage').addClass('hidden');
         $('#date-debut').addClass('hidden');
+        $('#date-fin').addClass('hidden');
         $("#dd").val("");
+        $("#df").val("");
         $('#date-fin').addClass('hidden');
         if ($(this).val() === "Autre") {
             $('#ville2').removeClass('hidden');
@@ -148,6 +165,14 @@ $().ready(function() {
     });
 
     $('#cte').change(function() {
+        if($(this).val() !== "na"){
+            $(this).addClass("selok");
+            $(this).removeClass("selnotok");
+        }else{
+            $(this).addClass("selnotok");
+            $(this).removeClass("selok");
+        }
+
         if($(this).val() === "Autre"){
             $('#type-event2').removeClass('hidden');
             $('#ville').removeClass('hidden');
@@ -160,10 +185,21 @@ $().ready(function() {
     });
 
     $('#cs').change(function() {
+
+        if($(this).val() !== "na"){
+            $(this).addClass("selok");
+            $(this).removeClass("selnotok");
+        }else{
+            $(this).addClass("selnotok");
+            $(this).removeClass("selok");
+        }
+
         $('#jours').removeClass('hidden');
         $('#plage').addClass('hidden');
         $('#date-debut').addClass('hidden');
+        $('#date-fin').addClass('hidden');
         $("#dd").val("");
+        $("#df").val("");
         $('input[name=jour]').attr('checked',false);
         hideInfo();
     });
@@ -182,16 +218,6 @@ $().ready(function() {
 
     });
 
-    $('#cbh').change(function() {
-        if($(this).is(':checked')){
-            $('#horaire-fin').css( "display", "inline" );
-            $('#hf').prop('disabled', false);
-        }else{
-            $('#hf').prop('disabled', true);
-            $('#horaire-fin').css( "display", "none" );
-        }
-    });
-
     $("#postForm").click(function(){
         if($('#cte').val() === "Autre"){
             $("#cte").append('<option value="' + $('#type-event-ext').val() + '"></option>');
@@ -202,8 +228,8 @@ $().ready(function() {
             $("#cv").val($('#ville-ext').val());
         }
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if($('#df').val()){
-            $('#ph').val("Plusieurs jours");
+        if($('#df').val() !== " "){
+            $('#ph').val("Toute la journée");
         }
     });
 
@@ -225,7 +251,7 @@ $().ready(function() {
                 for (i = 0; i < range.values.length; i++) {
                     var row = range.values[i];
 
-                    //if($('#cv').val() !== "Autre" && $('#jour2').is(':checked')){
+                    if($('#jour2').is(':checked')){
 
                         if($('#ph').val() !== "Soir" && $('#jour2').is(':checked') && row[4] === $('#cs').val()){
                             var from = Date.parse(row[6]);
@@ -271,7 +297,7 @@ $().ready(function() {
                             $('#invalide1').addClass('hidden');
                             showInfo();
                         }
-                    //}
+                    }
                 }
             } else {
                 appendPre('No data found.');
@@ -292,8 +318,9 @@ $().ready(function() {
                 for (i = 0; i < range.values.length; i++) {
                     var row = range.values[i];
 
+
                     if(row[6] >= $('#dd').val() && row[6] <= $('#df').val()){
-                        if(row[5] !== "Soir"){
+                        if(row[5] !== "Soir" && row[4] === $('#cs').val()){
                             $('#invalide2').removeClass('hidden');
                             hideInfo();
                             break;
@@ -302,6 +329,7 @@ $().ready(function() {
                         $('#invalide2').addClass('hidden');
                         showInfo();
                     }
+
                 }
             } else {
                 appendPre('No data found.');

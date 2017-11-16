@@ -126,9 +126,16 @@ div{
 
 #contact-form select{
   outline: none;
-  border:2px solid #e75112;
   width: 70%;
   height:40px;
+
+}
+
+.selok{
+  border:2px solid #3c763d;
+}
+.selnotok{
+  border:2px solid #a94442;
 }
 
 .contact-input {
