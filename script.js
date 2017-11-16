@@ -365,10 +365,10 @@ function initClient() {
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES
     }).then(function () {
-        
+
 
         if(!gapi.auth2.getAuthInstance().isSignedIn.get()){
-            handleAuthClick;
+            gapi.auth2.getAuthInstance().signIn();
         }
     });
 }
