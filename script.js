@@ -136,6 +136,7 @@ $().ready(function() {
         $('#date-fin').addClass('hidden');
         if ($(this).val() === "Autre") {
             $('#ville2').removeClass('hidden');
+            $("#jours").removeClass("hidden");
             $('#salle').addClass('hidden');
         }else{
             $('#ville2').addClass('hidden');
@@ -227,10 +228,7 @@ $().ready(function() {
             $("#cv").append('<option value="' + $('#ville-ext').val() + '"></option>');
             $("#cv").val($('#ville-ext').val());
         }
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if($('#df').val() !== " "){
-            $('#ph').val("Toute la journée");
-        }
+       
     });
 
     $('#jours').change(function(){
