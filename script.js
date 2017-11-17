@@ -46,10 +46,6 @@ $().ready(function() {
                         max: 30,
                         message: 'Le nom du speaker doit au minimum comporter 2 lettres (maximum: 30)'
                     },
-                    regexp: {
-                        regexp: /^[A-z-áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+$/,
-                        message: 'Le nom du speaker ne peut comporter que des lettres  !'
-                    },
                 }
             },
             Description: {
@@ -227,6 +223,12 @@ $().ready(function() {
         if($('#cv').val() === "Autre"){
             $("#cv").append('<option value="' + $('#ville-ext').val() + '"></option>');
             $("#cv").val($('#ville-ext').val());
+        }
+        if($('#df').val() !== ""){
+            $("#ph").append('<option value="Plusieurs jours"></option>');
+            $("#ph").val("Plusieurs jours");
+        }else{
+            $("#df").val($("#dd").val());
         }
 
     });

@@ -74,12 +74,22 @@ div{
   width: 50%;
   margin-left: 25%;
 }
-.contact-cb{
-  margin-left: 20px;
+
+@media only screen and (min-width: 768px) and (max-width: 999px) {
+  #contact-form{
+    width: 70%;
+    margin-left: 15%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #contact-form{
+    width: 90%;
+    margin-left: 5%;
+  }
 }
 
-#contact-info{
-  /*margin-left: 50%;*/
+.contact-cb{
+  margin-left: 20px;
 }
 
 #contact-form{
