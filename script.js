@@ -113,6 +113,7 @@ $().ready(function() {
 
 
     $('#cv').change(function () {
+        $('input[name=jour]').attr('checked',false);
 
         if($(this).val() !== "na"){
             $(this).addClass("selok");
@@ -162,6 +163,7 @@ $().ready(function() {
     });
 
     $('#cte').change(function() {
+        $('input[name=jour]').attr('checked',false);
         if($(this).val() !== "na"){
             $(this).addClass("selok");
             $(this).removeClass("selnotok");
@@ -223,6 +225,8 @@ $().ready(function() {
         if($('#cv').val() === "Autre"){
             $("#cv").append('<option value="' + $('#ville-ext').val() + '"></option>');
             $("#cv").val($('#ville-ext').val());
+            $("#cs").append('<option value="Pas chez SFEIR">Pas chez SFEIR</option>');
+            $("#cs").val("Pas chez SFEIR");
         }
         if($('#df').val() !== ""){
             $("#ph").append('<option value="Plusieurs jours"></option>');
