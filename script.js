@@ -250,21 +250,21 @@ $().ready(function() {
             hideInfo();
             $('#plage').removeClass('hidden');
             $("#ph").append('<option value="Matin">Toute la matinée</option>');
-            $("#ph").append('<option value="8-9">8h - 9h</option>');
-            $("#ph").append('<option value="9-10">9h - 10h</option>');
-            $("#ph").append('<option value="10-11">10h - 11h</option>');
-            $("#ph").append('<option value="11-12">11h - 12h</option>');
+            $("#ph").append('<option value="8">8h - 9h</option>');
+            $("#ph").append('<option value="9">9h - 10h</option>');
+            $("#ph").append('<option value="10">10h - 11h</option>');
+            $("#ph").append('<option value="11">11h - 12h</option>');
         }
         else if($('#tranche2').is(':checked')){
             hideInfo();
             $('#plage').removeClass('hidden');
             $("#ph").append('<option value="Après-midi">Toute l après-midi</option>');
-            $("#ph").append('<option value="12-13">12h - 13h</option>');
-            $("#ph").append('<option value="13-14">13h - 14h</option>');
-            $("#ph").append('<option value="14-15">14h - 15h</option>');
-            $("#ph").append('<option value="15-16">15h - 16h</option>');
-            $("#ph").append('<option value="16-17">16h - 17h</option>');
-            $("#ph").append('<option value="17-18">17h - 18h</option>');
+            $("#ph").append('<option value="12">12h - 13h</option>');
+            $("#ph").append('<option value="13">13h - 14h</option>');
+            $("#ph").append('<option value="14">14h - 15h</option>');
+            $("#ph").append('<option value="15">15h - 16h</option>');
+            $("#ph").append('<option value="16">16h - 17h</option>');
+            $("#ph").append('<option value="17">17h - 18h</option>');
         }else{
             $("#ph").append('<option value="Toute la journée">Toute la journée</option>');
             $("#ph").val("Toute la journée");
@@ -309,72 +309,72 @@ $().ready(function() {
 
                         if(row[6] === $('#dd').val() && row[4] === $('#cs').val()){
                             if($('#tranche1').is(':checked')) {
-                                if ($('#ph').val() === "8-9") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "8-9") {
+                                if ($('#ph').val() === "8") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "8") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
                                     }
                                 }
-                                else if ($('#ph').val() === "9-10") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "9-10") {
+                                else if ($('#ph').val() === "9") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "9") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
                                     }
                                 }
-                                else if ($('#ph').val() === "10-11") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "10-11") {
+                                else if ($('#ph').val() === "10") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "10") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
                                     }
                                 }
-                                else if ($('#ph').val() === "11-12") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "11-12") {
+                                else if ($('#ph').val() === "11") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "11") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
                                     }
                                 }
                             }else{
-                                if ($('#ph').val() === "12-13") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "12-13") {
+                                if ($('#ph').val() === "12") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "12") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
                                     }
                                 }
-                                else if ($('#ph').val() === "13-14") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "13-14") {
+                                else if ($('#ph').val() === "13") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "13") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
                                     }
                                 }
-                                else if ($('#ph').val() === "14-15") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "14-15") {
+                                else if ($('#ph').val() === "14") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "14") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
                                     }
                                 }
-                                else if ($('#ph').val() === "15-16") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "15-16") {
+                                else if ($('#ph').val() === "15") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "15") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
                                     }
                                 }
-                                else if ($('#ph').val() === "16-17") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "16-17") {
+                                else if ($('#ph').val() === "16") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "16") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
                                     }
                                 }
-                                else if ($('#ph').val() === "17-18") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "17-18") {
+                                else if ($('#ph').val() === "17") {
+                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "17") {
                                         $('#invalide1').removeClass('hidden');
                                         hideInfo();
                                         break;
