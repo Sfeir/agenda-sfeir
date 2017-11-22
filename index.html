@@ -87,6 +87,14 @@
                 </select>
             </div>
 
+            <div id="soiree" class="hidden">
+                <label class="contact-titre">Est-ce un évènement soirée ?</label>
+                <input type="radio" id="soir1" name="soir" value="oui">
+                <label for="soir1">Oui</label>
+                <input type="radio" id="soir2" name="soir" value="non">
+                <label for="soir2">Non</label>
+            </div>
+
             <div id="jours" class="hidden">
                 <label class="contact-titre">Est-ce sur plusieurs jours ?</label>
                 <input type="radio" id="jour1" name="jour" value="oui">
@@ -95,29 +103,36 @@
                 <label for="jour2">Non</label>
             </div>
 
-            <div id="plage" class="hidden">
-                <label class="contact-titre">Choisir une plage horaire :</label>
-                <select name="Plage horaire" id="ph">
-                    <option value="Matin">Matin</option>
-                    <option value="Après-midi">Après-midi</option>
-                    <option value="Toute la journée">Toute la journée</option>
-                    <option value="Soir">Soir</option>
-                </select>
-            </div>
-
             <div id="date-debut" class="hidden">
                 <label for="dd" class="contact-titre">Date de début :</label>
                 <input id="dd" type="date" name="Date DEBUT">
             </div>
 
-            <div id="invalide1" class="hidden">Date indisponible !</div>
+            <div id="tranches" class="hidden">
+                <label class="contact-titre">Quelle tranche horaire ?</label>
+                <input type="radio" id="tranche1" name="tranche" value="matin">
+                <label for="tranche1">Matin</label>
+                <input type="radio" id="tranche2" name="tranche" value="apres">
+                <label for="tranche2">Après-midi</label>
+                <input type="radio" id="tranche3" name="tranche" value="journee">
+                <label for="tranche3">Toute la journée</label>
+            </div>
+
+            <div id="plage" class="hidden">
+                <label class="contact-titre">Choisir une plage horaire :</label>
+                <select name="Plage horaire" id="ph">
+                    <option value="na">Choisir une plage horaire</option>
+                </select>
+            </div>
+
+            <div id="invalide1" class="hidden">Horaire indisponible !</div>
 
             <div id="date-fin" class="hidden">
                 <label for="df" class="contact-titre">Date de fin :</label>
                 <input id="df" type="date" name="Date FIN">
             </div>
 
-            <div id="invalide2" class="hidden">Date indisponible !</div>
+            <div id="invalide2" class="hidden">Horaire indisponible !</div>
 
             <div id="email" class="form-group has-feedback hidden">
                 <label for="Email-i" class="contact-titre">Votre adresse email</label>
@@ -142,6 +157,12 @@
             <div id="lien" class="form-group has-feedback hidden">
                 <label for="lien-i" class="contact-titre">Adresse du site de l'évènement</label>
                 <input id="lien-i" class="contact-input" type="text" name="Lien" placeholder="Lien"/>
+            </div>
+
+            <div id="agenda" class="hidden">
+                <select name="dans l'agenda?">
+                    <option value="NON"></option>
+                </select>
             </div>
 
             <div id="contact-btn"  class="form-group">
