@@ -598,7 +598,6 @@ function initClient() {
         if(!gapi.auth2.getAuthInstance().isSignedIn.get()){
             gapi.auth2.getAuthInstance().signIn();
             $('#login').removeClass('hidden');
-            window.location.reload();
         }else{
             $('#login').addClass('hidden');
         }
