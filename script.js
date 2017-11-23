@@ -15,10 +15,6 @@ $().ready(function() {
                     notEmpty: {
                         message: 'Un nom est nécessaire !'
                     },
-                    stringLength: {
-                        min: 2,
-                        message: 'Le nom de l\'évènement doit au minimum comporter 2 lettres (maximum: 30)'
-                    },
                 }
             },
             Organisateurs: {
@@ -27,10 +23,6 @@ $().ready(function() {
                     notEmpty: {
                         message: 'Un organisateur est nécessaire !'
                     },
-                    stringLength: {
-                        min: 2,
-                        message: 'Le nom de l\'organisateur doit au minimum comporter 2 lettres (maximum: 30)'
-                    },
                 }
             },
             Speaker: {
@@ -38,10 +30,6 @@ $().ready(function() {
                 validators: {
                     notEmpty: {
                         message: 'Un nom de speaker est nécessaire !'
-                    },
-                    stringLength: {
-                        min: 2,
-                        message: 'Le nom du speaker doit au minimum comporter 2 lettres'
                     },
                 }
             },
