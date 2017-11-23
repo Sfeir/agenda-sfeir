@@ -17,7 +17,6 @@ $().ready(function() {
                     },
                     stringLength: {
                         min: 2,
-                        max: 30,
                         message: 'Le nom de l\'évènement doit au minimum comporter 2 lettres (maximum: 30)'
                     },
                 }
@@ -30,7 +29,6 @@ $().ready(function() {
                     },
                     stringLength: {
                         min: 2,
-                        max: 30,
                         message: 'Le nom de l\'organisateur doit au minimum comporter 2 lettres (maximum: 30)'
                     },
                 }
