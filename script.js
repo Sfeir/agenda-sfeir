@@ -43,8 +43,7 @@ $().ready(function() {
                     },
                     stringLength: {
                         min: 2,
-                        max: 30,
-                        message: 'Le nom du speaker doit au minimum comporter 2 lettres (maximum: 30)'
+                        message: 'Le nom du speaker doit au minimum comporter 2 lettres'
                     },
                 }
             },
