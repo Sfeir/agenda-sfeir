@@ -29,6 +29,10 @@ a:focus {
   text-align: center;
 }
 
+#gif{
+  max-height: 250px;
+}
+
 #img-header img{
   width: 150px;
 }
