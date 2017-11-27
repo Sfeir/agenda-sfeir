@@ -1,5 +1,5 @@
 $().ready(function() {
-
+    var event;
     $('#contact-form').bootstrapValidator({
         //submitButtons: '#postForm',
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -99,6 +99,8 @@ $().ready(function() {
 
     $('#cv').change(function () {
         $('input[name=jour]').attr('checked',false);
+        $('input[name=tranche]').attr('checked',false);
+        $('input[name=soir]').attr('checked',false);
 
         if($(this).val() !== "na"){
             $(this).addClass("selok");
@@ -111,6 +113,8 @@ $().ready(function() {
         hideInfo();
         $('#jours').addClass('hidden');
         $('#plage').addClass('hidden');
+        $('#tranches').addClass('hidden');
+        $('#soiree').addClass('hidden');
         $('#date-debut').addClass('hidden');
         $('#date-fin').addClass('hidden');
         $("#dd").val("");
@@ -120,7 +124,9 @@ $().ready(function() {
             $('#ville2').removeClass('hidden');
             $("#jours").removeClass("hidden");
             $('#salle').addClass('hidden');
+            event = true;
         }else{
+            event = false;
             $('#ville2').addClass('hidden');
             $('#salle').removeClass('hidden');
             $("#cs").children("option").remove();
@@ -203,8 +209,10 @@ $().ready(function() {
             $('#date-debut').removeClass('hidden');
             $("#ph").append('<option value="Soir">Soir</option>');
             $("#ph").val("Soir");
+            event = true;
         }
         else{
+            event = false;
             $('#date-debut').addClass('hidden');
             $('#jours').removeClass('hidden');
         }
@@ -216,6 +224,7 @@ $().ready(function() {
         $('#date-debut').removeClass('hidden');
         $('#tranches').addClass('hidden');
         if($('#jour1').is(':checked')){
+            event = true;
             $('#date-fin').removeClass('hidden');
             $('#plage').addClass('hidden');
             $('#invalide1').addClass('hidden');
@@ -223,6 +232,7 @@ $().ready(function() {
             $("#ph").val("Soir");
         }
         else{
+            event = false;
             $('#date-fin').addClass('hidden');
         }
     });
@@ -232,6 +242,7 @@ $().ready(function() {
         $("#ph").children("option").remove();
         $("#ph").append('<option value="na">Choisir une plage horaire</option>');
         if($('#tranche1').is(':checked')){
+            event = false;
             hideInfo();
             $('#plage').removeClass('hidden');
             $("#ph").append('<option value="Matin">Toute la matinée</option>');
@@ -241,6 +252,7 @@ $().ready(function() {
             $("#ph").append('<option value="11">11h - 12h</option>');
         }
         else if($('#tranche2').is(':checked')){
+            event = false;
             hideInfo();
             $('#plage').removeClass('hidden');
             $("#ph").append('<option value="Après-midi">Toute l après-midi</option>');
@@ -253,7 +265,8 @@ $().ready(function() {
         }else{
             $("#ph").append('<option value="Toute la journée">Toute la journée</option>');
             $("#ph").val("Toute la journée");
-            showInfo();
+            event = true;
+            showInfo(event);
         }
     });
 
@@ -368,7 +381,7 @@ $().ready(function() {
                             }
                         }else{
                             $('#invalide1').addClass('hidden');
-                            showInfo();
+                            showInfo(event);
                         }
 
                 }
@@ -400,7 +413,7 @@ $().ready(function() {
 
                             } else {
                                 $('#invalide1').addClass('hidden');
-                                showInfo();
+                                showInfo(event);
                             }
                     }
                 } else {
@@ -457,45 +470,6 @@ $().ready(function() {
 
 
             $('input[name=tranche]').attr('checked',false);
-        //$('#plage').addClass('hidden');
-
-
-           /* gapi.client.sheets.spreadsheets.values.get({
-                spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
-                range: 'Sheet1',
-            }).then(function (response) {
-                var range = response.result;
-                if (range.values.length > 0) {
-                    for (i = 0; i < range.values.length; i++) {
-                        var row = range.values[i];
-
-                        if (row[5] === "Toute la journée" || row[4] === $('#cs').val()) {
-                            var from = Date.parse(row[6]);
-                            var to = Date.parse(row[7]);
-                            var check = Date.parse($('#dd').val());
-
-                            if (check <= to && check >= from) {
-                                $('#invalide1').removeClass('hidden');
-                                $('#tranches').addClass('hidden');
-                                hideInfo();
-                                break;
-                            } else {
-                                $('#invalide1').addClass('hidden');
-                                $('#tranches').removeClass('hidden');
-                                //showInfo();
-                            }
-                        }
-
-
-                    }
-                } else {
-                    appendPre('No data found.');
-                }
-            }, function (response) {
-                appendPre('Error: ' + response.result.error.message);
-            }); */
-
-
 
     });
 
@@ -517,7 +491,7 @@ $().ready(function() {
                         }
                     }else{
                         $('#invalide2').addClass('hidden');
-                        showInfo();
+                        showInfo(event);
                     }
 
                 }
@@ -532,13 +506,17 @@ $().ready(function() {
 
 });
 
-function showInfo(){
-    $('#organisateur').removeClass('hidden');
-    $('#speaker').removeClass('hidden');
-    $('#description').removeClass('hidden');
-    $('#lien').removeClass('hidden');
+function showInfo(x){
     $('#email').removeClass('hidden');
     $('#postForm').prop('disabled', false);
+
+    if(x){
+        $('#organisateur').removeClass('hidden');
+        $('#speaker').removeClass('hidden');
+        $('#description').removeClass('hidden');
+        $('#lien').removeClass('hidden');
+    }
+
 }
 
 function hideInfo(){
@@ -550,6 +528,8 @@ function hideInfo(){
     $('#postForm').prop('disabled', true);
 
 }
+
+
 
 // Client ID and API key from the Developer Console
 var CLIENT_ID = '610580318952-gbttqu242bfi93erapqcvcqtb8ot0l3n.apps.googleusercontent.com'; //wLrRqXofyXPVznT_nsG_7BhX
