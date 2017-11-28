@@ -194,6 +194,7 @@ $().ready(function() {
         $('input[name=jour]').attr('checked',false);
         $('input[name=soir]').attr('checked',false);
         hideInfo();
+        $('#invalide1').addClass('hidden');
     });
 
     $('#soiree').change(function() {
