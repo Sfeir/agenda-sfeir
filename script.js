@@ -192,6 +192,7 @@ $().ready(function() {
         $("#dd").val("");
         $("#df").val("");
         $('input[name=jour]').attr('checked',false);
+        $('input[name=soir]').attr('checked',false);
         hideInfo();
     });
 
@@ -305,7 +306,7 @@ $().ready(function() {
                     var row = range.values[i];
 
 
-                        if(row[6] === $('#dd').val() && row[4] === $('#cs').val()){
+                        if(row[6] === $('#dd').val() && row[4] === $('#cs').val() && row[3] === $('#cv').val()){
                             if($('#tranche1').is(':checked')) {
                                 if ($('#ph').val() === "8") {
                                     if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "8") {
@@ -406,7 +407,7 @@ $().ready(function() {
                     for (i = 0; i < range.values.length; i++) {
                         var row = range.values[i];
 
-                            if (row[6] === $('#dd').val() && row[4] === $('#cs').val() && row[5] === "Soir") {
+                            if (row[6] === $('#dd').val() && row[4] === $('#cs').val() && row[5] === "Soir" && row[3] === $('#cv').val()) {
                                 $('#invalide1').removeClass('hidden');
                                 hideInfo();
                                 break;
