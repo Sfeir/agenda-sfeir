@@ -112,8 +112,8 @@ $().ready(function() {
 
         hideInfo();
 
-        $("#dd").val("");
-        $("#df").val("");
+        resetValue('dd');
+        resetValue('df');
 
         if($(this).val() !== "na"){
             $(this).addClass("selok");
@@ -123,9 +123,6 @@ $().ready(function() {
             $(this).removeClass("selok");
         }
 
-
-
-        $('#date-fin').addClass('hidden');
         if ($(this).val() === "Autre") {
             showDiv('ville2');
             showDiv('jours');
@@ -178,8 +175,8 @@ $().ready(function() {
 
         hideInfo();
 
-        $("#dd").val("");
-        $("#df").val("");
+        resetValue('dd');
+        resetValue('df');
 
         if($('#local1').is(':checked')){
             showDiv('salle');
@@ -218,16 +215,17 @@ $().ready(function() {
         clearRadiobtn('jour');
 
         hideDiv('plage');
+        hideDiv('jours');
         hideDiv('date-debut');
         hideDiv('date-fin');
-        hideDiv('date-fin');
-        hideInfo('invalide1');
+        hideDiv('tranches');
+        hideDiv('invalide1');
         hideInfo();
 
         showDiv('soiree');
 
-        $("#dd").val("");
-        $("#df").val("");
+        resetValue('dd');
+        resetValue('df');
 
         if($(this).val() !== "na"){
             $(this).addClass("selok");
@@ -246,8 +244,8 @@ $().ready(function() {
         hideDiv('plage');
         hideInfo();
 
-        $("#dd").val("");
-        $("#ph").val("");
+        resetValue('dd');
+        resetValue('df');
 
         if($('#soir1').is(':checked')){
             hideDiv('jours');
@@ -270,7 +268,8 @@ $().ready(function() {
 
         showDiv('date-debut');
 
-        $("#dd").val("");
+        resetValue('dd');
+        resetValue('df');
 
         if($('#jour1').is(':checked')){
             event = true;
@@ -321,6 +320,7 @@ $().ready(function() {
         }
     });
 
+    // SOUMISSION DU FORMULAIRE (btn id #postForm)
     $("#postForm").click(function(){
         if($('#cte').val() === "Autre"){
             $("#cte").append('<option value="' + $('#type-event-ext').val() + '"></option>');
@@ -344,11 +344,12 @@ $().ready(function() {
         }
     });
 
-
+    // PLAGE HORAIRE (id #plage)
     $('#plage').change(function(){
         hideInfo();
     });
 
+    // CHOIX PLAGE HORAIRE (id #ph)
     $('#ph').change(function(){
         gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
@@ -448,6 +449,7 @@ $().ready(function() {
         });
     });
 
+    // CHOIX DATE DE DEBUT (id #dd)
     $('#dd').change(function(){
 
         if ($('#soir1').is(':checked')) {
@@ -484,7 +486,7 @@ $().ready(function() {
             hideDiv('plage');
             hideInfo();
 
-            $('#ph').val('');
+            resetValue('ph');
 
             gapi.client.sheets.spreadsheets.values.get({
                 spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
@@ -523,12 +525,11 @@ $().ready(function() {
             });
 
         }
-
-
-            $('input[name=tranche]').attr('checked',false);
+        clearRadiobtn('tranche');
 
     });
 
+    // CHOIX DATE DE FIN (id #df)
     $('#df').change(function(){
         gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
@@ -562,10 +563,10 @@ $().ready(function() {
 
 });
 
+// FONCTION QUI MONTRE INFO GENERALES MAIL + ORGA/SPEAKER/DESC/LIEN
 function showInfo(x){
     $('#email').removeClass('hidden');
     $('#postForm').prop('disabled', false);
-
     if(x){
         $('#organisateur').removeClass('hidden');
         $('#speaker').removeClass('hidden');
@@ -574,6 +575,7 @@ function showInfo(x){
     }
 }
 
+// FONCTION QUI CACHE INFO GENERALES MAIL + ORGA/SPEAKER/DESC/LIEN
 function hideInfo(){
     $('#organisateur').addClass('hidden');
     $('#speaker').addClass('hidden');
@@ -583,18 +585,25 @@ function hideInfo(){
     $('#postForm').prop('disabled', true);
 }
 
+// FONCTION QUI AJOUTE LA CLASS HIDDEN A UNE DIV (= la cache)
 function hideDiv(x){
     $('#'+x).addClass('hidden');
 }
 
+// FONCTION QUI RETIRE LA CLASS HIDDEN A UNE DIV (= la montre)
 function showDiv(x){
     $('#'+x).removeClass('hidden');
 }
 
+// FONCTION QUI DESELECTIONNE LES BTN RADIO
 function clearRadiobtn(x){
     $('input[name='+x+']').attr('checked',false);
 }
 
+//FONCTION QUI RESET LA VALEUR D'UN CHAMP
+function resetValue(x){
+    $("#"+x).val("");
+}
 
 // Client ID and API key from the Developer Console
 var CLIENT_ID = '610580318952-gbttqu242bfi93erapqcvcqtb8ot0l3n.apps.googleusercontent.com'; //wLrRqXofyXPVznT_nsG_7BhX
