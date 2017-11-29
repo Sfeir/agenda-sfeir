@@ -101,6 +101,8 @@ $().ready(function() {
         $('input[name=jour]').attr('checked',false);
         $('input[name=tranche]').attr('checked',false);
         $('input[name=soir]').attr('checked',false);
+        $('input[name=local]').attr('checked',false);
+
 
         if($(this).val() !== "na"){
             $(this).addClass("selok");
