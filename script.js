@@ -94,7 +94,7 @@ $().ready(function() {
     $('#cte').addClass("selnotok");
     $('#cv').addClass("selnotok");
     $('#cs').addClass("selnotok");
-    $('#ph').addClass("selok");
+    $('#ph').addClass("selnotok");
 
     // CHOIX DE LA VILLE (id #cv)
     $('#cv').change(function () {
@@ -351,6 +351,13 @@ $().ready(function() {
 
     // CHOIX PLAGE HORAIRE (id #ph)
     $('#ph').change(function(){
+        if($(this).val() !== "na"){
+            $(this).addClass("selok");
+            $(this).removeClass("selnotok");
+        }else{
+            $(this).addClass("selnotok");
+            $(this).removeClass("selok");
+        }
         gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
             range: 'Sheet1',
