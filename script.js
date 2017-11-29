@@ -124,11 +124,13 @@ $().ready(function() {
             $('#ville2').removeClass('hidden');
             $("#jours").removeClass("hidden");
             $('#salle').addClass('hidden');
+            $('#locaux').addClass('hidden');
             event = true;
         }else{
             event = false;
             $('#ville2').addClass('hidden');
-            $('#salle').removeClass('hidden');
+            $('#locaux').removeClass('hidden');
+            $('#salle').addClass('hidden');
             $("#cs").children("option").remove();
             $("#cs").append('<option value="na">Choisir une salle</option>');
             if ($(this).val() === "Paris") {
@@ -149,6 +151,29 @@ $().ready(function() {
                 $("#cs").append('<option value="Salle1">Salle 1 Strasbourg</option>');
                 $("#cs").append('<option value="Salle2">Salle 2 Strasbourg</option>');
             }
+        }
+
+    });
+
+    $('#locaux').change(function () {
+        hideInfo();
+        $('input[name=jour]').attr('checked',false);
+        $('input[name=tranche]').attr('checked',false);
+        $('input[name=soir]').attr('checked',false);
+        $('#jours').addClass('hidden');
+        $('#plage').addClass('hidden');
+        $('#tranches').addClass('hidden');
+        $('#soiree').addClass('hidden');
+        $('#date-debut').addClass('hidden');
+        $('#date-fin').addClass('hidden');
+        $("#dd").val("");
+        $("#df").val("");
+        $('#date-fin').addClass('hidden');
+        if($('#local1').is(':checked')){
+            $('#salle').removeClass('hidden');
+        }else{
+            $('#salle').addClass('hidden');
+            $('#soiree').removeClass('hidden');
         }
 
     });
@@ -280,6 +305,10 @@ $().ready(function() {
         if($('#cv').val() === "Autre"){
             $("#cv").append('<option value="' + $('#ville-ext').val() + '"></option>');
             $("#cv").val($('#ville-ext').val());
+            $("#cs").append('<option value="Pas chez SFEIR">Pas chez SFEIR</option>');
+            $("#cs").val("Pas chez SFEIR");
+        }
+        if($('#local2').is(':checked')) {
             $("#cs").append('<option value="Pas chez SFEIR">Pas chez SFEIR</option>');
             $("#cs").val("Pas chez SFEIR");
         }
