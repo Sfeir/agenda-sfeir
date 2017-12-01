@@ -612,28 +612,22 @@ function resetValue(x){
     $("#"+x).val("");
 }
 
-// Client ID and API key from the Developer Console
-var CLIENT_ID = '610580318952-gbttqu242bfi93erapqcvcqtb8ot0l3n.apps.googleusercontent.com'; //wLrRqXofyXPVznT_nsG_7BhX
+// ID CLIENT + CLE API (DEV. CONSOLE)
+var CLIENT_ID = '610580318952-gbttqu242bfi93erapqcvcqtb8ot0l3n.apps.googleusercontent.com';
 var API_KEY = 'AIzaSyAZJHOwagBVkC6GXSFqn2G9jN6D2sIGNRE';
 
-// Array of API discovery doc URLs for APIs used by the quickstart
+// DISCOVERY DOCS UTILISES PAR L'API LORS DU QUICKSTART
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
-// Authorization scopes required by the API; multiple scopes can be
-// included, separated by spaces.
+// AUTORISATION (= scope) NECESSAIRE A L'API
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
-/**
- *  On load, called to load the auth2 library and API client library.
- */
+// CHARGE LA BIBLIOTHEQUE AUTH2/CLIENT API
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);
 }
 
-/**
- *  Initializes the API client library and sets up sign-in state
- *  listeners.
- */
+ // INITIALISE LA BIBLIOTHEQUE DE L'API CLIENT ET ETABLIT LE STATUS DE CONNECTION
 function initClient() {
     gapi.client.init({
         apiKey: API_KEY,
