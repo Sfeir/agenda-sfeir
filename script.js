@@ -183,6 +183,7 @@ $().ready(function() {
         }else{
             showDiv('soiree');
             hideDiv('salle');
+            event = true;
         }
 
     });
@@ -315,6 +316,7 @@ $().ready(function() {
         }else{
             $("#ph").append('<option value="Toute la journée">Toute la journée</option>');
             $("#ph").val("Toute la journée");
+            hideDiv("plage")
             event = true;
             showInfo(event);
         }
@@ -443,6 +445,9 @@ $().ready(function() {
                                 }
                             }
                         }else{
+                            if($('#local2').is(':checked')){
+                                event = true;
+                            }
                             hideDiv('invalide1');
                             showInfo(event);
                         }
