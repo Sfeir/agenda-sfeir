@@ -99,21 +99,26 @@ $().ready(function() {
     // CHOIX DE LA VILLE (id #cv)
     $('#cv').change(function () {
         clearRadiobtn("local");
-        clearRadiobtn("soir");
         clearRadiobtn("jour");
         clearRadiobtn("tranche");
 
         hideDiv('jours');
         hideDiv('plage');
+        $("#ph").val("na");
         hideDiv('tranches');
-        hideDiv('soiree');
         hideDiv('date-debut');
         hideDiv('date-fin');
+        hideDiv('locaux');
+        hideDiv('salle');
+        $("#cs").val("na");
+        hideDiv('invalide');
 
         hideInfo();
 
         resetValue('dd');
         resetValue('df');
+
+        showDiv('jours');
 
         if($(this).val() !== "na"){
             $(this).addClass("selok");
@@ -125,14 +130,9 @@ $().ready(function() {
 
         if ($(this).val() === "Autre") {
             showDiv('ville2');
-            showDiv('jours');
-            hideDiv('salle');
-            hideDiv('locaux');
             event = true;
         }else{
-            showDiv('locaux');
             hideDiv('ville2');
-            hideDiv('salle');
             event = false;
 
             $("#cs").children("option").remove();
@@ -162,7 +162,7 @@ $().ready(function() {
 
     // LOCAUX SFEIR OU NON ? (id #locaux)
     $('#locaux').change(function () {
-        clearRadiobtn('soir');
+        /*clearRadiobtn('soir');
         clearRadiobtn('jour');
         clearRadiobtn('tranche');
 
@@ -173,17 +173,20 @@ $().ready(function() {
         hideDiv('date-debut');
         hideDiv('date-fin');
 
-        hideInfo();
+
 
         resetValue('dd');
-        resetValue('df');
+        resetValue('df'); */
+
+        hideInfo();
 
         if($('#local1').is(':checked')){
             showDiv('salle');
         }else{
-            showDiv('soiree');
-            hideDiv('salle');
             event = true;
+            showInfo(event);
+            hideDiv('salle');
+            $("#cs").val("na");
         }
 
     });
@@ -210,63 +213,19 @@ $().ready(function() {
         }
     });
 
-    // CHOIX DE LA SALLE (id #cs)
-    $('#cs').change(function() {
-        clearRadiobtn('soir');
-        clearRadiobtn('jour');
-
-        hideDiv('plage');
-        hideDiv('jours');
-        hideDiv('date-debut');
-        hideDiv('date-fin');
-        hideDiv('tranches');
-        hideDiv('invalide1');
-        hideInfo();
-
-        showDiv('soiree');
-
-        resetValue('dd');
-        resetValue('df');
-
-        if($(this).val() !== "na"){
-            $(this).addClass("selok");
-            $(this).removeClass("selnotok");
-        }else{
-            $(this).addClass("selnotok");
-            $(this).removeClass("selok");
-        }
-    });
-
-    // EVENEMENT LE SOIR OU NON ? (id #soiree)
-    $('#soiree').change(function() {
-        clearRadiobtn('jour');
-        hideDiv('date-fin');
-        hideDiv('tranches');
-        hideDiv('plage');
-        hideInfo();
-
-        resetValue('dd');
-        resetValue('df');
-
-        if($('#soir1').is(':checked')){
-            hideDiv('jours');
-            showDiv('date-debut');
-            $("#ph").append('<option value="Soir">Soir</option>');
-            $("#ph").val("Soir");
-            event = true;
-        }
-        else{
-            event = false;
-            hideDiv('date-debut');
-            showDiv('jours');
-        }
-    });
 
     // EST-CE SUR PLUSIEURS JOURS ? (id #jours)
     $('#jours').change(function() {
+        clearRadiobtn('tranche');
+        clearRadiobtn('local');
         hideDiv('tranches');
+        hideDiv('plage');
+        $("#ph").val("na");
+        hideDiv('locaux');
+        hideDiv('salle');
+        $("#cs").val("na");
+        hideDiv('invalide');
         hideInfo();
-
         showDiv('date-debut');
 
         resetValue('dd');
@@ -274,12 +233,10 @@ $().ready(function() {
 
         if($('#jour1').is(':checked')){
             event = true;
-            hideDiv('plage');
-            hideDiv('invalide1');
             showDiv('date-fin');
 
-            $("#ph").append('<option value="Soir">Soir</option>');
-            $("#ph").val("Soir");
+            $("#ph").append('<option value="Plusieurs jours"></option>');
+            $("#ph").val("Plusieurs jours");
         }
         else{
             event = false;
@@ -289,13 +246,17 @@ $().ready(function() {
 
     // CHOIX TRANCHES HORAIRE (id #tranches)
     $('#tranches').change(function() {
-
+        clearRadiobtn('local');
+        hideDiv('salle');
+        $("#cs").val("na");
+        hideDiv('invalide');
+        hideInfo();
         $("#ph").children("option").remove();
         $("#ph").append('<option value="na">Choisir une plage horaire</option>');
         if($('#tranche1').is(':checked')){
             event = false;
+            hideDiv('locaux');
             showDiv('plage');
-            hideInfo();
             $("#ph").append('<option value="Matin">Toute la matinée</option>');
             $("#ph").append('<option value="8">8h - 9h</option>');
             $("#ph").append('<option value="9">9h - 10h</option>');
@@ -304,7 +265,7 @@ $().ready(function() {
         }
         else if($('#tranche2').is(':checked')){
             event = false;
-            hideInfo();
+            hideDiv('locaux');
             showDiv('plage');
             $("#ph").append('<option value="Après-midi">Toute l après-midi</option>');
             $("#ph").append('<option value="12">12h - 13h</option>');
@@ -313,12 +274,18 @@ $().ready(function() {
             $("#ph").append('<option value="15">15h - 16h</option>');
             $("#ph").append('<option value="16">16h - 17h</option>');
             $("#ph").append('<option value="17">17h - 18h</option>');
-        }else{
+        }else if($('#tranche3').is(':checked')){
             $("#ph").append('<option value="Toute la journée">Toute la journée</option>');
             $("#ph").val("Toute la journée");
             hideDiv("plage")
             event = true;
-            showInfo(event);
+            showDiv('locaux');
+        }else if($('#tranche4').is(':checked')){
+            $("#ph").append('<option value="Soir">Soir</option>');
+            $("#ph").val("Soir");
+            hideDiv("plage")
+            event = true;
+            showDiv('locaux');
         }
     });
 
@@ -338,20 +305,18 @@ $().ready(function() {
             $("#cs").append('<option value="Pas chez SFEIR">Pas chez SFEIR</option>');
             $("#cs").val("Pas chez SFEIR");
         }
-        if($('#jour1').is(':checked')){
-            $("#ph").append('<option value="Plusieurs jours"></option>');
-            $("#ph").val("Plusieurs jours");
-        }else{
+        if($('#jour2').is(':checked')){
+
             $("#df").val($("#dd").val());
         }
     });
 
     // PLAGE HORAIRE (id #plage)
     $('#plage').change(function(){
+        showDiv('locaux');
         hideInfo();
     });
 
-    // CHOIX PLAGE HORAIRE (id #ph)
     $('#ph').change(function(){
         if($(this).val() !== "na"){
             $(this).addClass("selok");
@@ -360,220 +325,218 @@ $().ready(function() {
             $(this).addClass("selnotok");
             $(this).removeClass("selok");
         }
-        gapi.client.sheets.spreadsheets.values.get({
-            spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
-            range: 'Sheet1',
-        }).then(function(response) {
-            var range = response.result;
-            if (range.values.length > 0) {
-                for (i = 0; i < range.values.length; i++) {
-                    var row = range.values[i];
-
-
-                        if(row[6] === $('#dd').val() && row[4] === $('#cs').val() && row[3] === $('#cv').val()){
-                            if($('#tranche1').is(':checked')) {
-                                if ($('#ph').val() === "8") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "8") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                                else if ($('#ph').val() === "9") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "9") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                                else if ($('#ph').val() === "10") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "10") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                                else if ($('#ph').val() === "11") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "11") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                            }else{
-                                if ($('#ph').val() === "12") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "12") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                                else if ($('#ph').val() === "13") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "13") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                                else if ($('#ph').val() === "14") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "14") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                                else if ($('#ph').val() === "15") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "15") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                                else if ($('#ph').val() === "16") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "16") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                                else if ($('#ph').val() === "17") {
-                                    if (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "17") {
-                                        showDiv('invalide1');
-                                        hideInfo();
-                                        break;
-                                    }
-                                }
-                            }
-                        }else{
-                            if($('#local2').is(':checked')){
-                                event = true;
-                            }
-                            hideDiv('invalide1');
-                            showInfo(event);
-                        }
-
-                }
-            } else {
-                appendPre('No data found.');
-            }
-        }, function(response) {
-            appendPre('Error: ' + response.result.error.message);
-        });
+        clearRadiobtn('local');
+        hideDiv('invalide');
+        hideDiv('salle');
+        $("#cs").val("na");
+        hideInfo();
+        showDiv('locaux');
     });
 
-    // CHOIX DATE DE DEBUT (id #dd)
+    // CHOIX PLAGE HORAIRE (id #ph)
+    $('#cs').change(function() {
+
+        if ($(this).val() !== "na") {
+            $(this).addClass("selok");
+            $(this).removeClass("selnotok");
+        } else {
+            $(this).addClass("selnotok");
+            $(this).removeClass("selok");
+        }
+
+        if ($('#tranche4').is(':checked')) {
+            nightEvent();
+        }else if ($('#jour1').is(':checked')) {
+            multipleDaysEvent();
+        }else{
+            singleDayEvent();
+        }
+    });
+
     $('#dd').change(function(){
-
-        if ($('#soir1').is(':checked')) {
-
-            gapi.client.sheets.spreadsheets.values.get({
-                spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
-                range: 'Sheet1',
-            }).then(function (response) {
-                var range = response.result;
-                if (range.values.length > 0) {
-                    for (i = 0; i < range.values.length; i++) {
-                        var row = range.values[i];
-
-                            if (row[6] === $('#dd').val() && row[4] === $('#cs').val() && row[5] === "Soir" && row[3] === $('#cv').val()) {
-                                showDiv('invalide1');
-                                hideInfo();
-                                break;
-
-                            } else {
-                                hideDiv('invalide1');
-                                showInfo(event);
-                            }
-                    }
-                } else {
-                    appendPre('No data found.');
-                }
-            }, function (response) {
-                appendPre('Error: ' + response.result.error.message);
-            });
-        }
-
-
-        if ($('#jour2').is(':checked')) {
-            hideDiv('plage');
-            hideInfo();
-
-            resetValue('ph');
-
-            gapi.client.sheets.spreadsheets.values.get({
-                spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
-                range: 'Sheet1',
-            }).then(function (response) {
-                var range = response.result;
-                if (range.values.length > 0) {
-                    for (i = 0; i < range.values.length; i++) {
-                        var row = range.values[i];
-
-                        if (row[5] === "Toute la journée" || row[5] === "Plusieurs jours") {
-                            if(row[4] === $('#cs').val()){
-                                var from = Date.parse(row[6]);
-                                var to = Date.parse(row[7]);
-                                var check = Date.parse($('#dd').val());
-
-                                if (check <= to && check >= from) {
-                                    showDiv('invalide1');
-                                    hideDiv('tranches');
-                                    hideInfo();
-                                    break;
-                                }
-                            }
-                        }else {
-                            hideDiv('invalide1');
-                            showDiv('tranches');
-                            //showInfo();
-                        }
-
-                    }
-                } else {
-                    appendPre('No data found.');
-                }
-            }, function (response) {
-                appendPre('Error: ' + response.result.error.message);
-            });
-
-        }
         clearRadiobtn('tranche');
-
+        clearRadiobtn('local');
+        hideDiv('tranches');
+        hideDiv('plage');
+        $("#ph").val("na");
+        hideDiv('locaux');
+        hideDiv('salle');
+        $("#cs").val("na");
+        hideDiv('invalide');
+        hideInfo();
+        if ($('#jour1').is(':checked')){
+            hideDiv('tranches')
+        }else{
+            showDiv('tranches');
+        }
     });
 
-    // CHOIX DATE DE FIN (id #df)
     $('#df').change(function(){
-        gapi.client.sheets.spreadsheets.values.get({
-            spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
-            range: 'Sheet1',
-        }).then(function(response) {
-            var range = response.result;
-            if (range.values.length > 0) {
-                for (i = 0; i < range.values.length; i++) {
-                    var row = range.values[i];
-
-                    if(row[6] >= $('#dd').val() && row[6] <= $('#df').val()){
-                        if(row[5] !== "Soir" && row[4] === $('#cs').val()){
-                            showDiv('invalide2');
-                            hideInfo();
-                            break;
-                        }
-                    }else{
-                        hideDiv('invalide2');
-                        showInfo(event);
-                    }
-
-                }
-            } else {
-                appendPre('No data found.');
-            }
-        }, function(response) {
-            appendPre('Error: ' + response.result.error.message);
-        });
-
+        clearRadiobtn('tranche');
+        clearRadiobtn('local');
+        hideDiv('tranches');
+        hideDiv('plage');
+        $("#ph").val("na");
+        hideDiv('salle');
+        $("#cs").val("na");
+        hideDiv('invalide');
+        hideInfo();
+        showDiv('locaux');
     });
 
 });
+
+function singleDayEvent(){
+    gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
+        range: 'Sheet1',
+    }).then(function (response) {
+        var range = response.result;
+        if (range.values.length > 0) {
+            for (i = 0; i < range.values.length; i++) {
+                var row = range.values[i];
+
+                if ((row[5] === "Toute la journée" && row[4] === $('#cs').val()) || (row[5] === "Plusieurs jours" && row[4] === $('#cs').val())) {
+
+                    var from = Date.parse(row[6]);
+                    var to = Date.parse(row[7]);
+                    var check = Date.parse($('#dd').val());
+
+                    if (check <= to && check >= from) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                }
+
+
+                if ((row[6] === $('#dd').val() && row[4] === $('#cs').val()) && ($('#tranche1').is(':checked') || $('#tranche2').is(':checked'))) {
+                    if ($('#ph').val() === "8" && (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "8")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                    else if ($('#ph').val() === "9" && (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "9")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                    else if ($('#ph').val() === "10" && (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "10")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                    else if ($('#ph').val() === "11" && (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "11")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                    else if ($('#ph').val() === "12" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "12")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                    else if ($('#ph').val() === "13" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "13")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                    else if ($('#ph').val() === "14" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "14")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                    else if ($('#ph').val() === "15" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "15")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                    else if ($('#ph').val() === "16" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "16")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                    else if ($('#ph').val() === "17" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "17")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    } else if (($('#ph').val() === "Soir" && row[5] === "Soir") || ($('#ph').val() === "Toute la journée" && row[5] === "Toute la journée")) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+
+                    }
+                } else {
+                    hideDiv('invalide');
+                    showInfo(event);
+                }
+
+            }
+        } else {
+            appendPre('No data found.');
+        }
+    }, function (response) {
+        appendPre('Error: ' + response.result.error.message);
+    });
+}
+
+function nightEvent(){
+    gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
+        range: 'Sheet1',
+    }).then(function (response) {
+        var range = response.result;
+        if (range.values.length > 0) {
+            for (i = 0; i < range.values.length; i++) {
+                var row = range.values[i];
+
+                if (row[6] === $('#dd').val() && row[4] === $('#cs').val() && row[5] === "Soir" && row[3] === $('#cv').val()) {
+                    showDiv('invalide');
+                    hideInfo();
+                    break;
+
+                } else {
+                    hideDiv('invalide');
+                    showInfo(event);
+                }
+            }
+        } else {
+            appendPre('No data found.');
+        }
+    }, function (response) {
+        appendPre('Error: ' + response.result.error.message);
+    });
+}
+
+function multipleDaysEvent(){
+    gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
+        range: 'Sheet1',
+    }).then(function (response) {
+        var range = response.result;
+        if (range.values.length > 0) {
+            for (i = 0; i < range.values.length; i++) {
+                var row = range.values[i];
+
+                if (row[6] >= $('#dd').val() && row[6] <= $('#df').val()) {
+                    if (row[5] !== "Soir" && row[4] === $('#cs').val()) {
+                        showDiv('invalide');
+                        hideInfo();
+                        break;
+                    }
+                } else {
+                    hideDiv('invalide');
+                    showInfo(event);
+                }
+
+            }
+        } else {
+            appendPre('No data found.');
+        }
+    }, function (response) {
+        appendPre('Error: ' + response.result.error.message);
+    });
+}
 
 // FONCTION QUI MONTRE INFO GENERALES MAIL + ORGA/SPEAKER/DESC/LIEN
 function showInfo(x){

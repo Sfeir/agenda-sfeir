@@ -234,7 +234,7 @@ button:disabled, button:hover:disabled{
   border-color: #cccccc;
 }
 
-#invalide1, #invalide2{
+#invalide{
   color: #a94442;
   background-color: #fcf8e3;
   border-color: #faebcc;
