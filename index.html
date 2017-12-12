@@ -152,14 +152,30 @@
             <input id="organisateur-i" class="contact-input" type="text" name="Organisateurs" placeholder="Organisateurs"/>
         </div>
 
+        <div id="description" class="form-group has-feedback hidden">
+            <label for="description-i" class="contact-titre">Description rapide de l'évènement</label>
+            <input id="description-i" class="contact-input" type="text" name="Description" placeholder="Description"/>
+        </div>
+
+        <div id="speakers" class="hidden">
+            <label class="contact-titre">Y a-t-il un/des speaker(s) SFEIR ?</label>
+            <input type="radio" id="speaker1" name="speak" value="oui">
+            <label for="speaker1">Oui</label>
+            <input type="radio" id="speaker2" name="speak" value="non">
+            <label for="speaker2">Non</label>
+        </div>
+
         <div id="speaker" class="form-group has-feedback hidden">
             <label for="speaker-i" class="contact-titre">Le(s) speaker(s) SFEIR</label>
             <input id="speaker-i" class="contact-input" type="text" name="Speaker" placeholder="Speaker"/>
         </div>
 
-        <div id="description" class="form-group has-feedback hidden">
-            <label for="description-i" class="contact-titre">Description rapide de l'évènement</label>
-            <input id="description-i" class="contact-input" type="text" name="Description" placeholder="Description"/>
+        <div id="liens" class="hidden">
+            <label class="contact-titre">Avez vous un lien pour l'évènement (description, inscription, etc.) ?</label>
+            <input type="radio" id="lien1" name="link" value="oui">
+            <label for="lien1">Oui</label>
+            <input type="radio" id="lien2" name="link" value="non">
+            <label for="lien2">Non</label>
         </div>
 
         <div id="lien" class="form-group has-feedback hidden">

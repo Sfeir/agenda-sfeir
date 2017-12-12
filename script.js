@@ -101,6 +101,8 @@ $().ready(function() {
         clearRadiobtn("local");
         clearRadiobtn("jour");
         clearRadiobtn("tranche");
+        clearRadiobtn('speak');
+        clearRadiobtn('link');
 
         hideDiv('jours');
         hideDiv('plage');
@@ -162,21 +164,6 @@ $().ready(function() {
 
     // LOCAUX SFEIR OU NON ? (id #locaux)
     $('#locaux').change(function () {
-        /*clearRadiobtn('soir');
-        clearRadiobtn('jour');
-        clearRadiobtn('tranche');
-
-        hideDiv('soiree');
-        hideDiv('jours');
-        hideDiv('tranches');
-        hideDiv('plage');
-        hideDiv('date-debut');
-        hideDiv('date-fin');
-
-
-
-        resetValue('dd');
-        resetValue('df'); */
 
         hideInfo();
 
@@ -194,6 +181,8 @@ $().ready(function() {
     // CHOIX TYPE EVENEMENT (id #cte)
     $('#cte').change(function() {
         clearRadiobtn('jour');
+        clearRadiobtn('speak');
+        clearRadiobtn('link');
         showDiv('ville');
 
         if($(this).val() !== "na"){
@@ -218,6 +207,8 @@ $().ready(function() {
     $('#jours').change(function() {
         clearRadiobtn('tranche');
         clearRadiobtn('local');
+        clearRadiobtn('speak');
+        clearRadiobtn('link');
         hideDiv('tranches');
         hideDiv('plage');
         $("#ph").val("na");
@@ -247,6 +238,8 @@ $().ready(function() {
     // CHOIX TRANCHES HORAIRE (id #tranches)
     $('#tranches').change(function() {
         clearRadiobtn('local');
+        clearRadiobtn('speak');
+        clearRadiobtn('link');
         hideDiv('salle');
         $("#cs").val("na");
         hideDiv('invalide');
@@ -309,6 +302,9 @@ $().ready(function() {
 
             $("#df").val($("#dd").val());
         }
+        if ($('#speaker2').is(':checked')) {
+            $("#speaker-i").val("Pas de speaker");
+        }
     });
 
     // PLAGE HORAIRE (id #plage)
@@ -326,6 +322,8 @@ $().ready(function() {
             $(this).removeClass("selok");
         }
         clearRadiobtn('local');
+        clearRadiobtn('speak');
+        clearRadiobtn('link');
         hideDiv('invalide');
         hideDiv('salle');
         $("#cs").val("na");
@@ -356,6 +354,8 @@ $().ready(function() {
     $('#dd').change(function(){
         clearRadiobtn('tranche');
         clearRadiobtn('local');
+        clearRadiobtn('speak');
+        clearRadiobtn('link');
         hideDiv('tranches');
         hideDiv('plage');
         $("#ph").val("na");
@@ -374,6 +374,8 @@ $().ready(function() {
     $('#df').change(function(){
         clearRadiobtn('tranche');
         clearRadiobtn('local');
+        clearRadiobtn('speak');
+        clearRadiobtn('link');
         hideDiv('tranches');
         hideDiv('plage');
         $("#ph").val("na");
@@ -382,6 +384,24 @@ $().ready(function() {
         hideDiv('invalide');
         hideInfo();
         showDiv('locaux');
+    });
+
+    $('#speakers').change(function(){
+        $('#liens').removeClass('hidden');
+        if ($('#speaker1').is(':checked')) {
+            showDiv('speaker');
+        }else{
+            hideDiv('speaker');
+        }
+    });
+
+    $('#liens').change(function() {
+        $('#postForm').prop('disabled', false);
+        if ($('#lien1').is(':checked')) {
+            showDiv('lien');
+        }else{
+            hideDiv('lien');
+        }
     });
 
 });
@@ -541,20 +561,20 @@ function multipleDaysEvent(){
 // FONCTION QUI MONTRE INFO GENERALES MAIL + ORGA/SPEAKER/DESC/LIEN
 function showInfo(x){
     $('#email').removeClass('hidden');
-    $('#postForm').prop('disabled', false);
     if(x){
         $('#organisateur').removeClass('hidden');
-        $('#speaker').removeClass('hidden');
+        $('#speakers').removeClass('hidden');
         $('#description').removeClass('hidden');
-        $('#lien').removeClass('hidden');
     }
 }
 
 // FONCTION QUI CACHE INFO GENERALES MAIL + ORGA/SPEAKER/DESC/LIEN
 function hideInfo(){
     $('#organisateur').addClass('hidden');
+    $('#speakers').addClass('hidden');
     $('#speaker').addClass('hidden');
     $('#description').addClass('hidden');
+    $('#liens').addClass('hidden');
     $('#lien').addClass('hidden');
     $('#email').addClass('hidden');
     $('#postForm').prop('disabled', true);
