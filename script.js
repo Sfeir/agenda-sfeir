@@ -305,6 +305,9 @@ $().ready(function() {
         if ($('#speaker2').is(':checked')) {
             $("#speaker-i").val("Pas de speaker");
         }
+        if ($('#lien2').is(':checked')) {
+            $("#lien-i").val("Aucun lien disponible");
+        }
     });
 
     // PLAGE HORAIRE (id #plage)
