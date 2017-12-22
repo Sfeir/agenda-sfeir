@@ -121,34 +121,44 @@ $().ready(function() {
                 });
         });
 
-    //sortSelect(document.getElementById('cte'));
     cte.val('na');
     cte.addClass("selnotok");
     cv.addClass("selnotok");
     cs.addClass("selnotok");
     ph.addClass("selnotok");
 
+    // CHOIX TYPE EVENEMENT (id #cte)
+    cte.change(function() {
+        /*
+        for(var i=0;i<=rbtn.length;i++){
+            clearRadiobtn(rbtn[i]);
+        } */
+
+        showDiv('ville');
+
+        if($(this).val() !== "na"){
+            $(this).addClass("selok").removeClass("selnotok");
+        }else{
+            $(this).addClass("selnotok").removeClass("selok");
+        }
+
+        if($(this).val() === "Autre"){
+            showDiv('type-event2');
+            tee.prop('disabled', false);
+        }else{
+            hideDiv('type-event2');
+            tee.prop('disabled', true);
+        }
+    });
+
     // CHOIX DE LA VILLE (id #cv)
     cv.change(function () {
-        clearRadiobtn("local");
-        clearRadiobtn("jour");
-        clearRadiobtn("tranche");
-        clearRadiobtn('speak');
-        clearRadiobtn('link');
+        clearRadiobtn(0);
 
-        hideDiv('jours');
-        hideDiv('plage');
+        hideInfo(2);
+
         ph.val("na");
-        hideDiv('tranches');
-        hideDiv('date-debut');
-        hideDiv('date-fin');
-        hideDiv('locaux');
-        hideDiv('salle');
         cs.val("na");
-        hideDiv('invalide');
-
-        hideInfo();
-
         resetValue('dd');
         resetValue('df');
 
@@ -178,10 +188,112 @@ $().ready(function() {
 
     });
 
+    // EST-CE SUR PLUSIEURS JOURS ? (id #jours)
+    $('#jours').change(function() {
+        clearRadiobtn(1);
+        hideInfo(4);
+
+        ph.val("na");
+        cs.val("na");
+        resetValue('dd');
+        resetValue('df');
+
+        showDiv('date-debut');
+
+        if($('#jour1').is(':checked')){
+            event = true;
+            showDiv('date-fin');
+        }else{
+            event = false;
+            hideDiv('date-fin');
+        }
+    });
+
+    // CHOIX DATE DEBUT (id #dd)
+    $('#dd').change(function(){
+        clearRadiobtn(2);
+        hideInfo(8);
+
+        cs.val("na");
+
+        if ($('#jour1').is(':checked')){
+            hideDiv('tranches')
+        }else{
+            showDiv('tranches');
+        }
+    });
+
+    // CHOIX DATE FIN (id #df)
+    $('#df').change(function(){
+        clearRadiobtn(2);
+        hideInfo(8);
+
+        ph.val("na");
+        cs.val("na");
+
+        showDiv('locaux');
+
+
+    });
+
+    // CHOIX TRANCHES HORAIRE (id #tranches)
+    $('#tranches').change(function() {
+        clearRadiobtn(2);
+        hideInfo(8);
+
+        cs.val("na");
+
+        ph.children("option").remove();
+        ph.append('<option value="na">Choisir une plage horaire</option>');
+        if($('#tranche1').is(':checked') || $('#tranche2').is(':checked')){
+            event = false;
+            hideDiv('locaux');
+            showDiv('plage');
+            if($('#tranche1').is(':checked')){
+                ph.append(matin);
+            }else{
+                ph.append(aprem);
+            }
+        }else{
+            event = true;
+            hideDiv('plage');
+            showDiv('locaux');
+            if($('#tranche3').is(':checked')){
+                ph.append('<option value="Toute la journée">Toute la journée</option>').val("Toute la journée");
+            }else{
+                ph.append('<option value="Soir">Soir</option>').val("Soir");
+            }
+        }
+    });
+
+    // PLAGE HORAIRE (id #plage)
+    $('#plage').change(function(){
+        showDiv('locaux');
+        hideInfo(8);
+    });
+
+    // CHOIX PLAGE HORAIRE (id #ph)
+    ph.change(function(){
+        if($(this).val() !== "na"){
+            $(this).addClass("selok");
+            $(this).removeClass("selnotok");
+        }else{
+            $(this).addClass("selnotok");
+            $(this).removeClass("selok");
+        }
+
+        clearRadiobtn(2);
+        hideInfo(8);
+
+        cs.val("na");
+
+        showDiv('locaux');
+    });
+
     // LOCAUX SFEIR OU NON ? (id #locaux)
     $('#locaux').change(function () {
 
-        hideInfo();
+        hideInfo(8);
 
         if($('#local1').is(':checked')){
             showDiv('salle');
@@ -191,95 +303,44 @@ $().ready(function() {
             hideDiv('salle');
             cs.val("na");
         }
-
     });
 
-    // CHOIX TYPE EVENEMENT (id #cte)
-    cte.change(function() {
-        clearRadiobtn('jour');
-        clearRadiobtn('speak');
-        clearRadiobtn('link');
-        showDiv('ville');
+    // CHOIX SALLE (id #cs)
+    cs.change(function() {
 
-        if($(this).val() !== "na"){
-            $(this).addClass("selok").removeClass("selnotok");
+        if ($(this).val() !== "na") {
+            $(this).addClass("selok");
+            $(this).removeClass("selnotok");
+        } else {
+            $(this).addClass("selnotok");
+            $(this).removeClass("selok");
+        }
+
+        if ($('#tranche4').is(':checked')) {
+            nightEvent();
+        }else if ($('#jour1').is(':checked')) {
+            multipleDaysEvent();
         }else{
-            $(this).addClass("selnotok").removeClass("selok");
+            singleDayEvent();
         }
+    });
 
-        if($(this).val() === "Autre"){
-            showDiv('type-event2');
-            tee.prop('disabled', false);
+    // Y A T-IL DES SPEAKERS ? (id #jours)
+    speakers.change(function(){
+        liens.removeClass('hidden');
+        if ($('#speaker1').is(':checked')) {
+            showDiv('speaker');
         }else{
-            hideDiv('type-event2');
-            tee.prop('disabled', true);
+            hideDiv('speaker');
         }
     });
 
-
-    // EST-CE SUR PLUSIEURS JOURS ? (id #jours)
-    $('#jours').change(function() {
-        clearRadiobtn('tranche');
-        clearRadiobtn('local');
-        clearRadiobtn('speak');
-        clearRadiobtn('link');
-        hideDiv('tranches');
-        hideDiv('plage');
-        ph.val("na");
-        hideDiv('locaux');
-        hideDiv('salle');
-        cs.val("na");
-        hideDiv('invalide');
-        hideInfo();
-        showDiv('date-debut');
-
-        resetValue('dd');
-        resetValue('df');
-
-        if($('#jour1').is(':checked')){
-            event = true;
-            showDiv('date-fin');
-
-
-        }
-        else{
-            event = false;
-            hideDiv('date-fin');
-        }
-    });
-
-    // CHOIX TRANCHES HORAIRE (id #tranches)
-    $('#tranches').change(function() {
-        clearRadiobtn('local');
-        clearRadiobtn('speak');
-        clearRadiobtn('link');
-        hideDiv('salle');
-        cs.val("na");
-        hideDiv('invalide');
-        hideInfo();
-        ph.children("option").remove();
-        ph.append('<option value="na">Choisir une plage horaire</option>');
-        if($('#tranche1').is(':checked')){
-            event = false;
-            hideDiv('locaux');
-            showDiv('plage');
-            ph.append(matin);
-        }
-        else if($('#tranche2').is(':checked')){
-            event = false;
-            hideDiv('locaux');
-            showDiv('plage');
-            ph.append(aprem);
-        }else if($('#tranche3').is(':checked')){
-            ph.append('<option value="Toute la journée">Toute la journée</option>').val("Toute la journée");
-            hideDiv("plage")
-            event = true;
-            showDiv('locaux');
-        }else if($('#tranche4').is(':checked')){
-            ph.append('<option value="Soir">Soir</option>').val("Soir");
-            hideDiv("plage")
-            event = true;
-            showDiv('locaux');
+    liens.change(function() {
+        post.prop('disabled', false);
+        if ($('#lien1').is(':checked')) {
+            showDiv('lien');
+        }else{
+            hideDiv('lien');
         }
     });
 
@@ -312,106 +373,22 @@ $().ready(function() {
         }
     });
 
-    // PLAGE HORAIRE (id #plage)
-    $('#plage').change(function(){
-        showDiv('locaux');
-        hideInfo();
-    });
-
-    ph.change(function(){
-        if($(this).val() !== "na"){
-            $(this).addClass("selok");
-            $(this).removeClass("selnotok");
-        }else{
-            $(this).addClass("selnotok");
-            $(this).removeClass("selok");
-        }
-        clearRadiobtn('local');
-        clearRadiobtn('speak');
-        clearRadiobtn('link');
-        hideDiv('invalide');
-        hideDiv('salle');
-        cs.val("na");
-        hideInfo();
-        showDiv('locaux');
-    });
-
-    // CHOIX PLAGE HORAIRE (id #ph)
-    cs.change(function() {
-
-        if ($(this).val() !== "na") {
-            $(this).addClass("selok");
-            $(this).removeClass("selnotok");
-        } else {
-            $(this).addClass("selnotok");
-            $(this).removeClass("selok");
-        }
-
-        if ($('#tranche4').is(':checked')) {
-            nightEvent();
-        }else if ($('#jour1').is(':checked')) {
-            multipleDaysEvent();
-        }else{
-            singleDayEvent();
-        }
-    });
-
-    $('#dd').change(function(){
-        //clearRadiobtn('tranche');
-        //clearRadiobtn('local');
-        clearRadiobtn('speak');
-        clearRadiobtn('link');
-        //hideDiv('tranches');
-        //hideDiv('plage');
-        //ph.val("na");
-        //hideDiv('locaux');
-        //hideDiv('salle');
-        cs.val("na");
-        hideDiv('invalide');
-        hideInfo();
-        if ($('#jour1').is(':checked')){
-            hideDiv('tranches')
-        }else{
-            showDiv('tranches');
-        }
-    });
-
-    $('#df').change(function(){
-        //clearRadiobtn('tranche');
-        //clearRadiobtn('local');
-        clearRadiobtn('speak');
-        clearRadiobtn('link');
-        //hideDiv('tranches');
-        //hideDiv('plage');
-        ph.val("na");
-        //hideDiv('salle');
-        cs.val("na");
-        hideDiv('invalide');
-        hideInfo();
-        showDiv('locaux');
-    });
-
-    speakers.change(function(){
-        liens.removeClass('hidden');
-        if ($('#speaker1').is(':checked')) {
-            showDiv('speaker');
-        }else{
-            hideDiv('speaker');
-        }
-    });
-
-    liens.change(function() {
-        post.prop('disabled', false);
-        if ($('#lien1').is(':checked')) {
-            showDiv('lien');
-        }else{
-            hideDiv('lien');
-        }
-    });
-
 });
 
+// FONCTION POUR UN EVENT SUR 1 JOUR (matin/aprem/toute la journée)
 function singleDayEvent(){
+
+    // CST
+    // ph = plage horaire
+    const ph = $('#ph');
+    // cte = choix type evenement
+    const cte = $('#cte');
+    // cv = choix ville
+    const cv = $('#cv');
+    // cs = choix salle
+    const cs = $('#cs');
+
+
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
         range: 'Sheet1',
@@ -422,72 +399,70 @@ function singleDayEvent(){
                 var row = range.values[i];
 
                 if ((row[5] === "Toute la journée" && row[4] === cs.val()) || (row[5] === "Plusieurs jours" && row[4] === cs.val())) {
-
                     var from = Date.parse(row[6]);
                     var to = Date.parse(row[7]);
                     var check = Date.parse($('#dd').val());
 
                     if (check <= to && check >= from) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                 }
 
-
                 if ((row[6] === $('#dd').val() && row[4] === cs.val()) && ($('#tranche1').is(':checked') || $('#tranche2').is(':checked'))) {
                     if (ph.val() === "8" && (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "8")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                     else if (ph.val() === "9" && (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "9")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                     else if (ph.val() === "10" && (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "10")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                     else if (ph.val() === "11" && (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "11")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                     else if (ph.val() === "12" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "12")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                     else if (ph.val() === "13" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "13")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                     else if (ph.val() === "14" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "14")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                     else if (ph.val() === "15" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "15")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                     else if (ph.val() === "16" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "16")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                     else if (ph.val() === "17" && (row[5] === "Toute la journée" || row[5] === "Après-midi" || row[5] === "17")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     } else if ((ph.val() === "Soir" && row[5] === "Soir") || (ph.val() === "Toute la journée" && row[5] === "Toute la journée")) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
 
                     }
@@ -505,6 +480,7 @@ function singleDayEvent(){
     });
 }
 
+// FONCTION POUR UN EVENT LE SOIR
 function nightEvent(){
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
@@ -517,7 +493,7 @@ function nightEvent(){
 
                 if (row[6] === $('#dd').val() && row[4] === cs.val() && row[5] === "Soir" && row[3] === cv.val()) {
                     showDiv('invalide');
-                    hideInfo();
+                    hideInfo(9);
                     break;
 
                 } else {
@@ -533,6 +509,7 @@ function nightEvent(){
     });
 }
 
+// FONCTION POUR UN EVENT SUR PLUSIEURS JOURS
 function multipleDaysEvent(){
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
@@ -546,7 +523,7 @@ function multipleDaysEvent(){
                 if (row[6] >= $('#dd').val() && row[6] <= $('#df').val()) {
                     if (row[5] !== "Soir" && row[4] === cs.val()) {
                         showDiv('invalide');
-                        hideInfo();
+                        hideInfo(9);
                         break;
                     }
                 } else {
@@ -583,31 +560,12 @@ function showInfo(x){
 }
 
 // FONCTION QUI CACHE INFO GENERALES MAIL + ORGA/SPEAKER/DESC/LIEN
-function hideInfo(){
-    // organisateur
-    const organisateur = $('#organisateur');
-    // speakers = checkbox speakers sfeir (oui/non)
-    const speakers = $('#speakers');
-    // speakers = txt speakers
-    const speaker = $('#speaker');
-    // description
-    const description = $('#description');
-    // liens = checkbox lien dispo (oui/non)
-    const liens = $('#liens');
-    // lien = txt lien
-    const lien = $('#lien');
-    // email = txt email
-    const email = $('#email');
-    // postForm = soumission du formulaire
+function hideInfo(start){
     const post = $('#postForm');
-
-    organisateur.addClass('hidden');
-    speakers.addClass('hidden');
-    speaker.addClass('hidden');
-    description.addClass('hidden');
-    liens.addClass('hidden');
-    lien.addClass('hidden');
-    email.addClass('hidden');
+    var divs = ['ville','jours','date-debut','date-fin','tranches','plage','locaux','salle','salle','invalide','email','organisateur','description','speakers','liens'];
+    for(var i=start;i<=divs.length;i++){
+        hideDiv(divs[i]);
+    }
     post.prop('disabled', true);
 }
 
@@ -622,31 +580,16 @@ function showDiv(x){
 }
 
 // FONCTION QUI DESELECTIONNE LES BTN RADIO
-function clearRadiobtn(x){
-    $('input[name='+x+']').attr('checked',false);
+function clearRadiobtn(start){
+    var rbtn = ['jour','tranche','local','speak','link'];
+    for(var i=start;i<=rbtn.length;i++){
+        $('input[name='+rbtn[i]+']').attr('checked',false);
+    }
 }
 
 //FONCTION QUI RESET LA VALEUR D'UN CHAMP
 function resetValue(x){
     $("#"+x).val("");
-}
-
-function sortSelect(selElem) {
-    var tmpAry = new Array();
-    for (var i=0;i<selElem.options.length;i++) {
-        tmpAry[i] = new Array();
-        tmpAry[i][0] = selElem.options[i].text;
-        tmpAry[i][1] = selElem.options[i].value;
-    }
-    tmpAry.sort();
-    while (selElem.options.length > 0) {
-        selElem.options[0] = null;
-    }
-    for (var i=0;i<tmpAry.length;i++) {
-        var op = new Option(tmpAry[i][0], tmpAry[i][1]);
-        selElem.options[i] = op;
-    }
-    return;
 }
 
 // ID CLIENT + CLE API (DEV. CONSOLE)
