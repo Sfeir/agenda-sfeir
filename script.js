@@ -562,7 +562,7 @@ function showInfo(x){
 // FONCTION QUI CACHE INFO GENERALES MAIL + ORGA/SPEAKER/DESC/LIEN
 function hideInfo(start){
     const post = $('#postForm');
-    var divs = ['ville','jours','date-debut','date-fin','tranches','plage','locaux','salle','salle','invalide','email','organisateur','description','speakers','liens'];
+    var divs = ['ville','jours','date-debut','date-fin','tranches','plage','locaux','salle','salle','invalide','email','organisateur','description','speakers','speaker','liens','lien'];
     for(var i=start;i<=divs.length;i++){
         hideDiv(divs[i]);
     }
