@@ -24,9 +24,9 @@ $().ready(function() {
 
     // TXT
         var paris = '<option value="Salle Accueil">Salle Accueil</option><option value="Grande salle RdC">Grande salle RdC</option><option value="Salle 1er étage">Salle 1er étage</option><option value="Salle 4ème étage">Salle 4ème étage</option>';
-        var lille = '<option value="Salle1">Salle 1 Lille</option><option value="Salle2">Salle 2 Lille</option>';
-        var lux = '<option value="Salle1">Salle 1 Luxembourg</option><option value="Salle2">Salle 2 Luxembourg</option>';
-        var est = '<option value="Salle1">Salle 1 Strasbourg</option><option value="Salle2">Salle 2 Strasbourg</option>';
+        var lille = '<option value="Salle 1">Salle Lille</option>';
+        var lux = '<option value="Salle 1">Salle Luxembourg</option>';
+        var est = '<option value="Salle Metro">Metro</option><option value="Denali">Salle Denali</option><option value="Rosario">Salle Rosario</option>';
         var matin = '<option value="Matin">Toute la matinée</option><option value="8">8h - 9h</option><option value="9">9h - 10h</option><option value="10">10h - 11h</option><option value="11">11h - 12h</option>';
         var aprem = '<option value="Après-midi">Toute l après-midi</option><option value="12">12h - 13h</option><option value="13">13h - 14h</option><option value="14">14h - 15h</option><option value="15">15h - 16h</option><option value="16">16h - 17h</option><option value="17">17h - 18h</option>';
 

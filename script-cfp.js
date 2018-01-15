@@ -37,6 +37,14 @@ $().ready(function() {
                     },
                 }
             },
+            Adresse: {
+                message: 'Lien incorrect !',
+                validators: {
+                    notEmpty: {
+                        message: 'Une adresse vers l\'évènement est nécessaire !'
+                    },
+                }
+            },
             Ville: {
                 message: 'Lien incorrect !',
                 validators: {
@@ -98,6 +106,7 @@ $().ready(function() {
         showDiv('email');
         showDiv('description');
         showDiv('lien');
+        showDiv('adresse');
     });
 
 });
