@@ -26,7 +26,7 @@ a:focus {
 }
 
 #accueil{
-width: 60%;
+  width: 60%;
   margin-left: 20%;
 }
 
@@ -106,6 +106,8 @@ width: 60%;
   font-size: 24px;
   margin-top: -10px;
   color: #e75112;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
 }
 
 div{
