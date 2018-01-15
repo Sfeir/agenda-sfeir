@@ -73,7 +73,9 @@ width: 60%;
   margin-top: 0;
   line-height: 50px;
   opacity: 0.8;
-  background-color: #105394;;
+  background-color: #105394;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
 }
 
 @media only screen and (min-width: 768px){
