@@ -30,11 +30,33 @@ width: 60%;
   margin-left: 20%;
 }
 
+#cfp:hover{
+  color: #105394;
+}
+
+#cfp:hover img{
+  border-color:#105394;
+  border-width: 2px;
+  border-style: solid;
+}
+
+#evenement:hover{
+  color: #e75112;
+}
+
+#evenement:hover img{
+  border-color:#e75112;
+  border-width: 2px;
+  border-style: solid;
+}
 #cfp, #evenement {
   position: relative;
   text-align: center;
   color: white;
   font-size: 28px;
+  border-width: 2px;
+  border-color: transparent;
+  border-style: solid;
 }
 
 .centered{
@@ -48,6 +70,10 @@ width: 60%;
   text-align: center;
   color: #e75112;
   font-size: 26px;
+  margin-top: 0;
+  line-height: 50px;
+  opacity: 0.9;
+  background-color: #105394;;
 }
 
 @media only screen and (min-width: 768px){
@@ -81,7 +107,7 @@ width: 60%;
 }
 
 div{
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .orange{

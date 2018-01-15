@@ -87,6 +87,10 @@ $().ready(function() {
                 });
         });
 
+    $('#nom-event-i').change(function() {
+        post.prop('disabled', true);
+    });
+
     $('#date-debut').change(function(){
         showDiv('date-fin');
     });
