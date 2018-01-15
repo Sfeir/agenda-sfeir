@@ -13,7 +13,7 @@ body {
   height: 100vh;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,.centered {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
 }
@@ -23,6 +23,43 @@ a {
 a:hover,
 a:focus {
   color: #0085a1;
+}
+
+#accueil{
+width: 60%;
+  margin-left: 20%;
+}
+
+#cfp, #evenement {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 28px;
+}
+
+.centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#contact-form h1{
+  text-align: center;
+  color: #e75112;
+  font-size: 26px;
+}
+
+@media only screen and (min-width: 768px){
+  #cfp{
+    float:left;
+    width:45%;
+  }
+
+  #evenement{
+    margin-left: 55%;
+    width: 45%;
+  }
 }
 
 #img-header{
