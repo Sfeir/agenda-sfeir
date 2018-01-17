@@ -397,7 +397,7 @@ function singleDayEvent(){
         if (range.values.length > 0) {
             for (i = 0; i < range.values.length; i++) {
                 var row = range.values[i];
-
+                
                 if ((row[8] === "Toute la journée" && row[7] === cs.val()) || (row[8] === "Plusieurs jours" && row[7] === cs.val())) {
                     var from = Date.parse(row[1]);
                     var to = Date.parse(row[2]);
@@ -482,6 +482,13 @@ function singleDayEvent(){
 
 // FONCTION POUR UN EVENT LE SOIR
 function nightEvent(){
+
+    // CST
+    // cv = choix ville
+    const cv = $('#cv');
+    // cs = choix salle
+    const cs = $('#cs');
+
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
         range: 'Sheet1',
@@ -511,6 +518,11 @@ function nightEvent(){
 
 // FONCTION POUR UN EVENT SUR PLUSIEURS JOURS
 function multipleDaysEvent(){
+
+    // CST
+    // cs = choix salle
+    const cs = $('#cs');
+
     gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1wlT_4W24gLMY9wXsEmfAU-O7diaegVcEhOX6XDWuVf4',
         range: 'Sheet1',
