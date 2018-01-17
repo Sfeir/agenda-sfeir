@@ -397,10 +397,10 @@ function singleDayEvent(){
         if (range.values.length > 0) {
             for (i = 0; i < range.values.length; i++) {
                 var row = range.values[i];
-                
-                if ((row[8] === "Toute la journée" && row[7] === cs.val()) || (row[8] === "Plusieurs jours" && row[7] === cs.val())) {
-                    var from = Date.parse(row[1]);
-                    var to = Date.parse(row[2]);
+
+                if ((row[7] === "Toute la journée" && row[6] === cs.val()) || (row[7] === "Plusieurs jours" && row[6] === cs.val())) {
+                    var from = Date.parse(row[0]);
+                    var to = Date.parse(row[1]);
                     var check = Date.parse($('#dd').val());
 
                     if (check <= to && check >= from) {
@@ -410,57 +410,57 @@ function singleDayEvent(){
                     }
                 }
 
-                if ((row[1] === $('#dd').val() && row[7] === cs.val()) && ($('#tranche1').is(':checked') || $('#tranche2').is(':checked'))) {
+                if ((row[0] === $('#dd').val() && row[6] === cs.val()) && ($('#tranche1').is(':checked') || $('#tranche2').is(':checked'))) {
                     if (ph.val() === "8" && (row[5] === "Toute la journée" || row[5] === "Matin" || row[5] === "8")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
                     }
-                    else if (ph.val() === "9" && (row[8] === "Toute la journée" || row[8] === "Matin" || row[8] === "9")) {
+                    else if (ph.val() === "9" && (row[7] === "Toute la journée" || row[7] === "Matin" || row[7] === "9")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
                     }
-                    else if (ph.val() === "10" && (row[8] === "Toute la journée" || row[8] === "Matin" || row[8] === "10")) {
+                    else if (ph.val() === "10" && (row[7] === "Toute la journée" || row[7] === "Matin" || row[7] === "10")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
                     }
-                    else if (ph.val() === "11" && (row[8] === "Toute la journée" || row[8] === "Matin" || row[8] === "11")) {
+                    else if (ph.val() === "11" && (row[7] === "Toute la journée" || row[7] === "Matin" || row[7] === "11")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
                     }
-                    else if (ph.val() === "12" && (row[8] === "Toute la journée" || row[8] === "Après-midi" || row[8] === "12")) {
+                    else if (ph.val() === "12" && (row[7] === "Toute la journée" || row[7] === "Après-midi" || row[7] === "12")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
                     }
-                    else if (ph.val() === "13" && (row[8] === "Toute la journée" || row[8] === "Après-midi" || row[8] === "13")) {
+                    else if (ph.val() === "13" && (row[7] === "Toute la journée" || row[7] === "Après-midi" || row[7] === "13")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
                     }
-                    else if (ph.val() === "14" && (row[8] === "Toute la journée" || row[8] === "Après-midi" || row[8] === "14")) {
+                    else if (ph.val() === "14" && (row[7] === "Toute la journée" || row[7] === "Après-midi" || row[7] === "14")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
                     }
-                    else if (ph.val() === "15" && (row[8] === "Toute la journée" || row[8] === "Après-midi" || row[8] === "15")) {
+                    else if (ph.val() === "15" && (row[7] === "Toute la journée" || row[7] === "Après-midi" || row[7] === "15")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
                     }
-                    else if (ph.val() === "16" && (row[8] === "Toute la journée" || row[8] === "Après-midi" || row[8] === "16")) {
+                    else if (ph.val() === "16" && (row[7] === "Toute la journée" || row[7] === "Après-midi" || row[7] === "16")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
                     }
-                    else if (ph.val() === "17" && (row[8] === "Toute la journée" || row[8] === "Après-midi" || row[8] === "17")) {
+                    else if (ph.val() === "17" && (row[7] === "Toute la journée" || row[7] === "Après-midi" || row[7] === "17")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
-                    } else if ((ph.val() === "Soir" && row[8] === "Soir") || (ph.val() === "Toute la journée" && row[8] === "Toute la journée")) {
+                    } else if ((ph.val() === "Soir" && row[7] === "Soir") || (ph.val() === "Toute la journée" && row[7] === "Toute la journée")) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
@@ -498,7 +498,7 @@ function nightEvent(){
             for (i = 0; i < range.values.length; i++) {
                 var row = range.values[i];
 
-                if (row[1] === $('#dd').val() && row[7] === cs.val() && row[8] === "Soir" && row[6] === cv.val()) {
+                if (row[0] === $('#dd').val() && row[6] === cs.val() && row[7] === "Soir" && row[5] === cv.val()) {
                     showDiv('invalide');
                     hideInfo(9);
                     break;
@@ -532,8 +532,8 @@ function multipleDaysEvent(){
             for (i = 0; i < range.values.length; i++) {
                 var row = range.values[i];
 
-                if (row[1] >= $('#dd').val() && row[2] <= $('#df').val()) {
-                    if (row[8] !== "Soir" && row[7] === cs.val()) {
+                if (row[0] >= $('#dd').val() && row[1] <= $('#df').val()) {
+                    if (row[7] !== "Soir" && row[6] === cs.val()) {
                         showDiv('invalide');
                         hideInfo(9);
                         break;
@@ -574,7 +574,7 @@ function showInfo(x){
 // FONCTION QUI CACHE INFO GENERALES MAIL + ORGA/SPEAKER/DESC/LIEN
 function hideInfo(start){
     const post = $('#postForm');
-    var divs = ['ville','jours','date-debut','date-fin','tranches','plage','locaux','salle','salle','invalide','email','organisateur','description','speakers','speaker','liens','lien'];
+    var divs = ['ville','jours','date-debut','date-fin','tranches','plage','locaux','salle','invalide','email','organisateur','description','speakers','speaker','liens','lien'];
     for(var i=start;i<=divs.length;i++){
         hideDiv(divs[i]);
     }
