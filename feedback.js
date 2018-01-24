@@ -57,6 +57,10 @@ $().ready(function() {
         getEventName();
     });
 
+    post.click(function(){
+        $('#eid').append('<option value="' + getUrlParameter('id') + '"></option>');
+    });
+
 });
 
 function getEventName(){
@@ -70,8 +74,8 @@ function getEventName(){
             for (i = 0; i < range.values.length; i++) {
                 var row = range.values[i];
 
-                if(row[4] === idEvent){
-                    $("#nomEvent").append( row[3] );
+                if(row[3] === idEvent){
+                    $("#nomEvent").append(row[2]);
                     break;
                 }
             }
@@ -97,17 +101,6 @@ function getUrlParameter(sParam) {
         }
     }
 };
-
-
-// FONCTION QUI AJOUTE LA CLASS HIDDEN A UNE DIV (= la cache)
-function hideDiv(x){
-    $('#'+x).addClass('hidden');
-}
-
-// FONCTION QUI RETIRE LA CLASS HIDDEN A UNE DIV (= la montre)
-function showDiv(x){
-    $('#'+x).removeClass('hidden');
-}
 
 // ID CLIENT + CLE API (DEV. CONSOLE)
 var CLIENT_ID = '610580318952-gbttqu242bfi93erapqcvcqtb8ot0l3n.apps.googleusercontent.com';
