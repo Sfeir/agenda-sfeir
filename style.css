@@ -100,7 +100,7 @@ a:focus {
 }
 
 #gif{
-  max-height: 250px;
+  max-height: 200px;
 }
 
 #img-header img{
@@ -287,9 +287,11 @@ input:disabled{
 
 #congrats h1{
   color: #e75112;
+  font-size: 24px;
 }
 #congrats h2{
   color: #105394;
+  font-size: 18px;
 }
 
 .hidden{
