@@ -13,7 +13,7 @@ $().ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            Description: {
+            Feedback: {
                 message: 'Description incorrecte !',
                 validators: {
                     notEmpty: {

@@ -322,6 +322,6 @@ button:disabled, button:hover:disabled{
   padding: 10px;
 }
 
-#description-i{
+#description-i, #feedback-i{
   min-height: 120px !important;
 }
