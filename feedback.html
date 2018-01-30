@@ -21,17 +21,20 @@
     <h1>Booking</h1>
 </div>
 
+<div id="feedback">
+    <img src="feedback.png" alt="feedback" style="width:100%;">
+    <div class="centered">Feedback</div>
+</div>
 
-<form id="contact-form" role="form" data-toggle="validator" action="#">
+<form id="contact-form" role="form" data-toggle="validator" action="#" class="hidden">
 
     <h1>Feedback</h1>
 
     <h2 id="nomEvent"></h2>
+    <h3 id="erreurEvent">Si l'évènement n'est pas le bon, merci de contacter Paul CHABOT ou Vincent PLOUY</h3>
 
     <div id="contact-info">
         <div id="login" class="hidden">N'oubliez pas d'autoriser les pop-ups afin d'autoriser la modification du Google Sheet relatif au calendrier !</div>
-
-        <button id="test" class="orange">test</button>
 
         <div id="date-debut" class="hidden">
             <select name="Date DEBUT">
@@ -44,8 +47,7 @@
             </select>
         </div>
 
-        <div id="feedback" class="form-group has-feedback">
-            <label for="feedback-i" class="contact-titre">Feedback de l'évènement</label>
+        <div id="fb" class="form-group has-feedback">
             <textarea id="feedback-i" class="contact-input" type="text" name="Feedback" placeholder="Feedback" cols="50" rows="10"/></textarea>
         </div>
 

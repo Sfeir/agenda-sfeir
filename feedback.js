@@ -1,5 +1,3 @@
-
-
 $().ready(function() {
 
     // postForm = soumission du formulaire
@@ -53,7 +51,9 @@ $().ready(function() {
                 });
         });
 
-    $('#test').click(function() {
+    $('#feedback').click(function() {
+        $('#feedback').addClass('hidden');
+        $('#contact-form').removeClass('hidden');
         getEventName();
     });
 

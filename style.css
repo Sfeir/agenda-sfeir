@@ -49,7 +49,7 @@ a:focus {
   border-width: 2px;
   border-style: solid;
 }
-#cfp, #evenement {
+#cfp, #evenement, #feedback {
   position: relative;
   text-align: center;
   color: white;
@@ -87,6 +87,11 @@ a:focus {
   #evenement{
     margin-left: 55%;
     width: 45%;
+  }
+
+  #feedback{
+    margin-left: 25%;
+    width: 50%;
   }
 }
 
@@ -269,7 +274,6 @@ input:disabled{
 
 #congrats{
   text-align: center;
-
 }
 
 #congrats h1{
@@ -324,4 +328,16 @@ button:disabled, button:hover:disabled{
 
 #description-i, #feedback-i{
   min-height: 120px !important;
+}
+
+#nomEvent{
+  text-align: center;
+  color: #105394;
+}
+
+#erreurEvent{
+  text-align: center;
+  color: grey;
+  font-style: italic;
+  font-size: 12px;
 }
