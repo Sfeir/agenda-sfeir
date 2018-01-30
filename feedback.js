@@ -57,6 +57,14 @@ $().ready(function() {
         getEventName();
     });
 
+    $('#album').change(function() {
+        if($('#album1').is(':checked')){
+            $('#lien-feedback').removeClass('hidden');
+        }else{
+            $('#lien-feedback').addClass('hidden');
+        }
+    });
+
     post.click(function(){
         $('#eid').append('<option value="' + getUrlParameter('id') + '"></option>');
     });
@@ -75,7 +83,7 @@ function getEventName(){
                 var row = range.values[i];
 
                 if(row[3] === idEvent){
-                    $("#nomEvent").append(row[2]);
+                    $("#nomEvent").html(row[2]);
                     break;
                 }
             }

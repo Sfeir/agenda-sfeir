@@ -23,14 +23,14 @@
 
 <div id="feedback">
     <img src="feedback.png" alt="feedback" style="width:100%;">
-    <div class="centered">Feedback</div>
+    <div class="centered">Bienvenue sur l'espace Feedback<br /><span id="feedbackClick">cliquez pour continuer</span></div>
 </div>
 
 <form id="contact-form" role="form" data-toggle="validator" action="#" class="hidden">
 
     <h1>Feedback</h1>
 
-    <h2 id="nomEvent"></h2>
+    <h2 id="nomEvent">Erreur évènement !</h2>
     <h3 id="erreurEvent">Si l'évènement n'est pas le bon, merci de contacter Paul CHABOT ou Vincent PLOUY</h3>
 
     <div id="contact-info">
@@ -49,6 +49,19 @@
 
         <div id="fb" class="form-group has-feedback">
             <textarea id="feedback-i" class="contact-input" type="text" name="Feedback" placeholder="Feedback" cols="50" rows="10"/></textarea>
+        </div>
+
+
+        <div id="album">
+            <label class="contact-titre">Y a-t-il un lien utile (album photo, debrief, site etc.) ?</label>
+            <input type="radio" id="album1" name="album" value="oui">
+            <label for="album1">Oui</label>
+            <input type="radio" id="album2" name="album" value="non">
+            <label for="album2">Non</label>
+        </div>
+
+        <div id="lien-feedback" class="form-group has-feedback hidden" style="margin-top: -30px;">
+            <input id="lien-feedback-i" class="contact-input" type="text" name="Lien Feedback" placeholder="Lien"/>
         </div>
 
         <div id="contact-btn"  class="form-group">

@@ -162,6 +162,15 @@ div{
     width: 90%;
     margin-left: 5%;
   }
+
+  #feedback{
+    margin-left: 20%;
+    width: 60%;
+  }
+
+  #feedback div, #feedback span{
+    font-size: 20px;
+  }
 }
 
 .contact-cb{
@@ -340,4 +349,10 @@ button:disabled, button:hover:disabled{
   color: grey;
   font-style: italic;
   font-size: 12px;
+}
+
+#feedbackClick{
+  color: #e75112;
+  font-style: italic;
+  font-size: 18px;
 }
