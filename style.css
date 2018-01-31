@@ -43,20 +43,37 @@ a:focus {
 #evenement:hover{
   color: #e75112;
 }
+#feedback:hover{
+  color: #fff;
+}
+#feedback:hover span{
+  color: #e75112;
+}
 
-#evenement:hover img{
+#evenement:hover img, #feedback:hover{
   border-color:#e75112;
   border-width: 2px;
   border-style: solid;
 }
-#cfp, #evenement, #feedback {
+#cfp, #evenement{
   position: relative;
   text-align: center;
-  color: white;
+  color: #fff;
   font-size: 28px;
   border-width: 2px;
   border-color: transparent;
   border-style: solid;
+  cursor: pointer;
+}
+#feedback {
+  position: relative;
+  text-align: center;
+  color: #e75112;
+  font-size: 28px;
+  border-width: 2px;
+  border-color: transparent;
+  border-style: solid;
+  cursor: pointer;
 }
 
 .centered{
@@ -354,7 +371,7 @@ button:disabled, button:hover:disabled{
 }
 
 #feedbackClick{
-  color: #e75112;
+  color: #fff;
   font-style: italic;
   font-size: 18px;
 }
