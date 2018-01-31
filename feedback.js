@@ -103,7 +103,7 @@ $().ready(function() {
     });
 
     nbLinks.change(function() {
-            feedbackLinks(nbLinks.val());
+        feedbackLinks(nbLinks.val());
     });
 
     post.click(function(){
@@ -114,7 +114,7 @@ $().ready(function() {
 
 function feedbackLinks(nb){
     const nbLinks = $('#nl');
-    const link = '#lien-feedback';
+    const lien = '#lien-feedback';
 
     if(nb>0){
         nbLinks.addClass("selok").removeClass("selnotok");
@@ -122,11 +122,10 @@ function feedbackLinks(nb){
         nbLinks.addClass("selnotok").removeClass("selok");
     }
     for(i=nb;i<=4;++i){
-        $(link+i).addClass('hidden');
-        $(link+i).val('/');
+        $(lien+i).addClass('hidden');
     }
     for(i=1;i<= nb;i++){
-        $(link+i).removeClass('hidden');
+        $(lien+i).removeClass('hidden');
     }
 }
 
