@@ -52,16 +52,43 @@
         </div>
 
 
-        <div id="album">
-            <label class="contact-titre">Y a-t-il un lien utile (album photo, debrief, site etc.) ?</label>
-            <input type="radio" id="album1" name="album" value="oui">
-            <label for="album1">Oui</label>
-            <input type="radio" id="album2" name="album" value="non">
-            <label for="album2">Non</label>
+        <div id="liens">
+            <label class="contact-titre">Y a-t-il un ou plusieurs liens utiles (album photo, debrief, site etc.) ?</label>
+            <input type="radio" id="lien1" name="lien" value="oui">
+            <label for="lien1">Oui</label>
+            <input type="radio" id="lien2" name="lien" value="non">
+            <label for="lien2">Non</label>
         </div>
 
-        <div id="lien-feedback" class="form-group has-feedback hidden" style="margin-top: -30px;">
-            <input id="lien-feedback-i" class="contact-input" type="text" name="Lien Feedback" placeholder="Lien"/>
+        <div id="nb-liens" class="hidden">
+            <label for="nl" class="contact-titre">Combien de liens avez-vous à votre disposition ?</label>
+            <select id="nl">
+                <option value="0">Choisir un nombre de liens</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+
+        <div id="lien-feedback1" class="form-group has-feedback hidden">
+            <label for="lien-feedback1-i" class="contact-titre">Lien utile</label>
+            <input id="lien-feedback1-i" class="contact-input" type="text" name="LienFeedback1" placeholder="Lien"/>
+        </div>
+
+        <div id="lien-feedback2" class="form-group has-feedback hidden">
+            <label for="lien-feedback2-i" class="contact-titre">Lien utile #2</label>
+            <input id="lien-feedback2-i" class="contact-input" type="text" name="LienFeedback2" placeholder="Lien"/>
+        </div>
+
+        <div id="lien-feedback3" class="form-group has-feedback hidden">
+            <label for="lien-feedback3-i" class="contact-titre">Lien utile #3</label>
+            <input id="lien-feedback3-i" class="contact-input" type="text" name="LienFeedback3" placeholder="Lien"/>
+        </div>
+
+        <div id="lien-feedback4" class="form-group has-feedback hidden">
+            <label for="lien-feedback4-i" class="contact-titre">Lien utile #4</label>
+            <input id="lien-feedback4-i" class="contact-input" type="text" name="LienFeedback4" placeholder="Lien"/>
         </div>
 
         <div id="contact-btn"  class="form-group">

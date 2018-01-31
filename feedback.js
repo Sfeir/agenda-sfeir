@@ -2,6 +2,8 @@ $().ready(function() {
 
     // postForm = soumission du formulaire
     const post = $('#postForm');
+    const liens = $('#nb-liens');
+    const nbLinks = $('#nl');
     $('#contact-form').bootstrapValidator({
         //submitButtons: '#postForm',
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -16,6 +18,38 @@ $().ready(function() {
                 validators: {
                     notEmpty: {
                         message: 'Une description de l\'évènement est nécessaire !'
+                    },
+                }
+            },
+            LienFeedback1: {
+                message: 'Lien incorrect !',
+                validators: {
+                    notEmpty: {
+                        message: 'Un lien vers l\'évènement est nécessaire !'
+                    },
+                }
+            },
+            LienFeedback2: {
+                message: 'Lien incorrect !',
+                validators: {
+                    notEmpty: {
+                        message: 'Un lien vers l\'évènement est nécessaire !'
+                    },
+                }
+            },
+            LienFeedback3: {
+                message: 'Lien incorrect !',
+                validators: {
+                    notEmpty: {
+                        message: 'Un lien vers l\'évènement est nécessaire !'
+                    },
+                }
+            },
+            LienFeedback4: {
+                message: 'Lien incorrect !',
+                validators: {
+                    notEmpty: {
+                        message: 'Un lien vers l\'évènement est nécessaire !'
                     },
                 }
             },
@@ -51,18 +85,25 @@ $().ready(function() {
                 });
         });
 
+    nbLinks.addClass("selnotok");
+
     $('#feedback').click(function() {
         $('#feedback').addClass('hidden');
         $('#contact-form').removeClass('hidden');
         getEventName();
     });
 
-    $('#album').change(function() {
-        if($('#album1').is(':checked')){
-            $('#lien-feedback').removeClass('hidden');
+    $('#liens').change(function() {
+        if($('#lien1').is(':checked')){
+            liens.removeClass('hidden');
         }else{
-            $('#lien-feedback').addClass('hidden');
+            liens.addClass('hidden');
+            feedbackLinks(0);
         }
+    });
+
+    nbLinks.change(function() {
+            feedbackLinks(nbLinks.val());
     });
 
     post.click(function(){
@@ -70,6 +111,24 @@ $().ready(function() {
     });
 
 });
+
+function feedbackLinks(nb){
+    const nbLinks = $('#nl');
+    const link = '#lien-feedback';
+
+    if(nb>0){
+        nbLinks.addClass("selok").removeClass("selnotok");
+    }else{
+        nbLinks.addClass("selnotok").removeClass("selok");
+    }
+    for(i=nb;i<=4;++i){
+        $(link+i).addClass('hidden');
+        $(link+i).val('/');
+    }
+    for(i=1;i<= nb;i++){
+        $(link+i).removeClass('hidden');
+    }
+}
 
 function getEventName(){
     var idEvent = getUrlParameter('id');
