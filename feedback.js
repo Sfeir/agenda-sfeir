@@ -53,7 +53,38 @@ $().ready(function() {
                     },
                 }
             },
-
+            TxtFeedback1: {
+                message: 'Descriptif incorrect !',
+                validators: {
+                    notEmpty: {
+                        message: 'Un descriptif du lien est nécessaire !'
+                    },
+                }
+            },
+            TxtFeedback2: {
+                message: 'Descriptif incorrect !',
+                validators: {
+                    notEmpty: {
+                        message: 'Un descriptif du lien est nécessaire !'
+                    },
+                }
+            },
+            TxtFeedback3: {
+                message: 'Descriptif incorrect !',
+                validators: {
+                    notEmpty: {
+                        message: 'Un descriptif du lien est nécessaire !'
+                    },
+                }
+            },
+            TxtFeedback4: {
+                message: 'Descriptif incorrect !',
+                validators: {
+                    notEmpty: {
+                        message: 'Un descriptif du lien est nécessaire !'
+                    },
+                }
+            },
         }
     })
         .on('success.form.bv', function (e) {
@@ -115,6 +146,7 @@ $().ready(function() {
 function feedbackLinks(nb){
     const nbLinks = $('#nl');
     const lien = '#lien-feedback';
+    const txt = '#txt-feedback';
 
     if(nb>0){
         nbLinks.addClass("selok").removeClass("selnotok");
@@ -123,9 +155,11 @@ function feedbackLinks(nb){
     }
     for(i=nb;i<=4;++i){
         $(lien+i).addClass('hidden');
+        $(txt+i).addClass('hidden');
     }
     for(i=1;i<= nb;i++){
         $(lien+i).removeClass('hidden');
+        $(txt+i).removeClass('hidden');
     }
 }
 
