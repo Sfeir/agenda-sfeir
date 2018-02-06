@@ -379,3 +379,14 @@ button:disabled, button:hover:disabled{
 #txt-feedback1, #txt-feedback2, #txt-feedback3, #txt-feedback4{
   margin-bottom: 5%;
 }
+
+@media only screen and (max-width: 767px) {
+  #mail{
+    margin-left: 5%;width: 90%;background: #FAFAFA;line-height: 20px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #mail{
+    margin-left: 25%;width: 50%;background: #FAFAFA;line-height: 20px;
+  }
+}
