@@ -40,9 +40,10 @@
             </select>
         </div>
 
-        <div id="nom-ville" class="form-group has-feedback">
-            <label for="nom-ville-i" class="contact-titre">Ville de l'évènement</label>
-            <input id="nom-ville-i" class="contact-input" type="text" name="Ville" placeholder="Ville de l'évènement"/>
+        <div id="nom-ville" class="hidden">
+            <select name="Ville" id="ville">
+                <option value="/"></option>
+            </select>
         </div>
 
         <div id="date-debut">
@@ -61,8 +62,8 @@
         </div>
 
         <div id="description" class="form-group has-feedback hidden">
-            <label for="description-i" class="contact-titre">Description rapide de l'évènement</label>
-            <textarea id="description-i" class="contact-input" type="text" name="Description" placeholder="Description" cols="50" rows="10"/></textarea>
+            <label for="site-i" class="contact-titre">Lien du site de l'évènement</label>
+            <input id="site-i" class="contact-input" type="text" name="Description" placeholder="Lien du site"/>
         </div>
 
         <div id="lien" class="form-group has-feedback hidden">
@@ -71,8 +72,8 @@
         </div>
 
         <div id="adresse" class="form-group has-feedback hidden">
-            <label for="adresse-i" class="contact-titre">Adresse de la conférence</label>
-            <input id="adresse-i" class="contact-input" type="text" name="Adresse" placeholder="Adresse de la conférence"/>
+            <label for="adresse-i" class="contact-titre">Lien de l'évènement Workplace</label>
+            <input id="adresse-i" class="contact-input" type="text" name="Adresse" placeholder="Event Workplace"/>
         </div>
 
         <div id="plage" class="hidden">

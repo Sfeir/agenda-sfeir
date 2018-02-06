@@ -25,7 +25,7 @@ $().ready(function() {
                 message: 'Description incorrecte !',
                 validators: {
                     notEmpty: {
-                        message: 'Une description de l\'évènement est nécessaire !'
+                        message: 'Le site de l\'évènement est nécessaire !'
                     },
                 }
             },
@@ -33,7 +33,7 @@ $().ready(function() {
                 message: 'Lien incorrect !',
                 validators: {
                     notEmpty: {
-                        message: 'Un lien vers l\'évènement est nécessaire !'
+                        message: 'Un lien vers le CFP est nécessaire !'
                     },
                 }
             },
@@ -41,15 +41,7 @@ $().ready(function() {
                 message: 'Lien incorrect !',
                 validators: {
                     notEmpty: {
-                        message: 'Une adresse vers l\'évènement est nécessaire !'
-                    },
-                }
-            },
-            Ville: {
-                message: 'Lien incorrect !',
-                validators: {
-                    notEmpty: {
-                        message: 'Un lien vers l\'évènement est nécessaire !'
+                        message: 'Un lien vers l\'évènement Workplace est nécessaire !'
                     },
                 }
             },
