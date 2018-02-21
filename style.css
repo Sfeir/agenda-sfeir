@@ -379,3 +379,26 @@ button:disabled, button:hover:disabled{
 #txt-feedback1, #txt-feedback2, #txt-feedback3, #txt-feedback4{
   margin-bottom: 5%;
 }
+
+#retour{
+  text-decoration: none;
+  color: #fff;
+  border-width: 0;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  border-bottom-width: 3px;
+  border-color: #e75112;
+  background-color: #e75112;
+  margin-top: 10px;
+}
+#retour:hover{
+  background-color: #105394;
+  border-color: #105394;
+}
+
+#retour:focus{
+  background-color: #105394;
+  border-bottom-width: 0px;
+  margin-bottom: 3px;
+}
