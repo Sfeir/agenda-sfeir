@@ -110,7 +110,7 @@ $().ready(function() {
             var jqxhr = $.post(url, $form.serialize(), function (data) {
                 console.log("Success! Data: " + data.statusText);
                 $(location).attr('href', redirectUrl);
-            })
+            }, 'jsonp')
                 .fail(function (data) {
                     console.warn("Error! Data: " + data.statusText);
                     // HACK - check if browser is Safari - and redirect even if fail b/c we know the form submits.
