@@ -107,10 +107,19 @@ $().ready(function() {
             var redirectUrl = 'congrats.html';
             // show the loading
             post.prepend($('<span></span>').addClass('glyphicon glyphicon-refresh glyphicon-refresh-animate'));
-            var jqxhr = $.post(url, $form.serialize(), function (data) {
-                console.log("Success! Data: " + data.statusText);
-                $(location).attr('href', redirectUrl);
-            }, 'jsonp')
+            var jqxhr = $.ajax({
+                url: url,
+                type: 'post',
+                data: $form.serialize(),
+                headers: {
+                    "Access-Control-Allow-Origin": "*"
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log("Success! Data: " + data.statusText);
+                    $(location).attr('href', redirectUrl);
+                }
+            })
                 .fail(function (data) {
                     console.warn("Error! Data: " + data.statusText);
                     // HACK - check if browser is Safari - and redirect even if fail b/c we know the form submits.
